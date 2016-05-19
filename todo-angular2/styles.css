@@ -1,0 +1,53 @@
+a.brand-logo {
+    content: '';
+    background: url("/app/assets/images/angular-logo.svg") top center no-repeat;
+    background-size: contain;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 100%;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+footer {
+   position:fixed;
+   left:0px;
+   bottom:0px;
+   width:100%;
+   margin-top: 10px;
+}  
+
+nav {
+   position:fixed;
+   left:0px;
+   top:0px;
+   width:100%;
+} 
+
+.scroll {
+    overflow: auto;
+    height: 85%;
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+body, html {
+    height: 100%;
+    overflow: hidden;
+    padding-top: 35px;
+}
+
+.text-small {
+    font-size: .7em;
+}

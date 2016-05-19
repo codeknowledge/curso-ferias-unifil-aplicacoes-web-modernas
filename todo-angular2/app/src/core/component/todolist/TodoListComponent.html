@@ -1,0 +1,25 @@
+<ul class="collection with-header">
+    <li class="collection-header">
+        <h4>Tarefas</h4>
+    </li>
+    <todo *ngFor="let todo of todos" [todo]="todo"></todo>
+</ul>
+<div class="row">
+    <form class="col s12">
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">note_add</i>
+                <input type="text" id="name" class="validate" length="15" minlength="5">
+                <label for="name">Nova Tarefa</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix"></i>
+                <textarea id="description" class="materialize-textarea" length="150" rows="2"></textarea>
+                <label for="description">Descrição da tarefa</label>
+            </div>
+        </div>
+        <button class="btn waves-effect waves-light right-align"><i class="material-icons right">send</i></button>
+    </form>
+</div>

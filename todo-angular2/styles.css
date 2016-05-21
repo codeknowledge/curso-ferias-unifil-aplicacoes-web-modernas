@@ -51,3 +51,9 @@ body, html {
 .text-small {
     font-size: .7em;
 }
+
+.center {
+    margin: auto;
+    width: 100%;
+    padding: 10px;
+}

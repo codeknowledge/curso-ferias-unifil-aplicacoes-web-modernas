@@ -3,3 +3,7 @@ interface JQuery {
     leanModal();
     leanModal(configuration: Object);
 }
+
+declare class Materialize {
+    static showStaggeredList(selector: string);
+}

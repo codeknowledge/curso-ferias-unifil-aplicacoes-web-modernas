@@ -1,4 +1,4 @@
-<div class="fixed-action-btn" style="bottom: 80px; right: 25px;">
+<div class="fixed-action-btn">
     <a class="btn-floating btn-large red modal-trigger" href="#todoCreationModal">
         <i class="material-icons">playlist_add</i>
     </a>
@@ -7,8 +7,7 @@
 <div id="todoCreationModal" class="modal bottom-sheet">
     <div class="modal-content teal lighten-5">
         <div class="container">
-            <h4 class="center"> Adicione uma Nova Tarefa</h4>
-            <hr/>
+            <h4 class="center"> <i class="small material-icons">playlist_add</i> Adicione uma Nova Tarefa</h4>
             <form>
                 <div class="row">
                     <div class="col s12">
@@ -30,7 +29,8 @@
                 </div>
                 <div class="row">
                     <div class="col s12">
-                        <button class="btn waves-effect waves-light right"><i class="material-icons right">send</i></button>
+                        <button class="btn waves-effect waves-light right" onclick="alert('saved')"><i class="fa fa-floppy-o" ></i></button>
+                        <button class="btn red waves-effect waves-light right" onclick="alert('cleaned')"><i class="fa fa-eraser" ></i></button>
                     </div>
                 </div>
             </form>

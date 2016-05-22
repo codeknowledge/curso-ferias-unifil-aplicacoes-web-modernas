@@ -1,0 +1,7 @@
+.fixed-action-btn{
+    bottom: 80px; right: 25px;
+}
+
+.btn:last-child {
+    margin-right: 10px;
+}

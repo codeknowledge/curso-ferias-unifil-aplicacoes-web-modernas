@@ -30,7 +30,7 @@ export class TodoListComponent {
       todo.description = `Description ${i + 1}`;
       todo.done = i % 2 ? true : false;
       if (todo.done) {
-        todo.doneDate = new Date();
+        todo.doneDate = new Date(1463796582);
       }
       this.todos.push(todo);
     }

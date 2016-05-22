@@ -1,9 +1,16 @@
-<tr>
-    <td>{{todo.name}}</td>
-    <td>{{todo.description}}</td>
-    <td>{{todo.doneDate}}</td>
-    <td>
-        <input type="checkbox" id="{{todo.id}}" [(ngModel)]="todo.done" />
+<li class="collection-item">
+    <div class="margin-bottom">
+        <span class="title" [class.finished]="todo.done">{{todo.name}}</span>
+    </div>
+    <span *ngIf="todo.done" class="text-small">
+        <i class="material-icons tiny">alarm_on</i>
+        Terminado há {{todo.doneDate | relativeTime}}
+    </span>
+    <div class="secondary-content">
+        <input type="checkbox" [id]="todo.id" [(ngModel)]="todo.done" />
         <label [attr.for]="todo.id"></label>
-    </td>
-</tr>
+    </div>
+    <p *ngIf="todo.description" class="reset-margin">
+        {{todo.description}}
+    </p>
+</li>

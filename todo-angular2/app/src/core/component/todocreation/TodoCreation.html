@@ -1,0 +1,39 @@
+<div class="fixed-action-btn" style="bottom: 80px; right: 25px;">
+    <a class="btn-floating btn-large red modal-trigger" href="#todoCreationModal">
+        <i class="material-icons">playlist_add</i>
+    </a>
+</div>
+<!-- Modal Structure -->
+<div id="todoCreationModal" class="modal bottom-sheet">
+    <div class="modal-content teal lighten-5">
+        <div class="container">
+            <h4 class="center"> Adicione uma Nova Tarefa</h4>
+            <hr/>
+            <form>
+                <div class="row">
+                    <div class="col s12">
+                        <div class="input-field">
+                            <i class="material-icons prefix">note_add</i>
+                            <input type="text" id="name" class="validate" length="15" minlength="5">
+                            <label for="name">Nova Tarefa</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix"></i>
+                            <textarea id="description" class="materialize-textarea" length="150" rows="2"></textarea>
+                            <label for="description">Descrição da tarefa</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <button class="btn waves-effect waves-light right"><i class="material-icons right">send</i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

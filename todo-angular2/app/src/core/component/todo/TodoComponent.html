@@ -1,0 +1,9 @@
+<tr>
+    <td>{{todo.name}}</td>
+    <td>{{todo.description}}</td>
+    <td>{{todo.doneDate}}</td>
+    <td>
+        <input type="checkbox" id="{{todo.id}}" [(ngModel)]="todo.done" />
+        <label [attr.for]="todo.id"></label>
+    </td>
+</tr>

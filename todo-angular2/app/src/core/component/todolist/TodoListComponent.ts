@@ -7,11 +7,17 @@ import { TodoCreation } from '../todocreation/TodoCreation';
 @Component({
   selector: 'todo-list',
   templateUrl: 'app/src/core/component/todolist/TodoListComponent.html',
+  styleUrls: ['app/src/core/component/todolist/TodoListComponent.css'],
   directives: [TodoComponent, TodoCreation]
 })
 export class TodoListComponent {
 
   private todos = new Array<Todo>();
+
+  constructor(
+  ) {
+
+  }
 
   ngAfterViewInit(): void {
 
@@ -28,6 +34,9 @@ export class TodoListComponent {
       }
       this.todos.push(todo);
     }
+    setTimeout(() => {
+      Materialize.showStaggeredList('todo');
+    });
 
   }
 

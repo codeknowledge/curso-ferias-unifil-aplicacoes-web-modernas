@@ -1,16 +1,9 @@
 <div class="container">
-    <table class="responsive-table highlight">
-        <thead>
-            <tr>
-                <th>Tarefa</th>
-                <th>Descrição</th>
-                <th>Terminada em</th>
-                <th>Opções</th>
-            </tr>
-        </thead>
-        <tbody>
-            <todo *ngFor="let todo of todos" [todo]="todo"></todo>
-        </tbody>
-    </table>
+    <ul class="collection with-header">
+        <li class="collection-header">
+            <h4>Lista de Tarefas</h4>
+        </li>
+        <todo *ngFor="let todo of todos" [todo]="todo"></todo>
+    </ul>
     <todo-creation></todo-creation>
 </div>

@@ -1,0 +1,1 @@
+export { RelativeTimePipe } from '../src/core/pipe/RelativeTimePipe'

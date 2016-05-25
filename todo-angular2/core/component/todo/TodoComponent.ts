@@ -5,8 +5,8 @@ import { RelativeTimePipe } from '../../pipe/RelativeTimePipe'
 
 @Component({
     selector: 'todo',
-    templateUrl: 'app/src/core/component/todo/TodoComponent.html',
-    styleUrls: ['app/src/core/component/todo/TodoComponent.css'],
+    templateUrl: 'core/component/todo/TodoComponent.html',
+    styleUrls: ['core/component/todo/TodoComponent.css'],
     directives: [TodoComponent],
     pipes: [RelativeTimePipe]
 })

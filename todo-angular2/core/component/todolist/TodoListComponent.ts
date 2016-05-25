@@ -6,8 +6,8 @@ import { TodoCreation } from '../todocreation/TodoCreation';
 
 @Component({
   selector: 'todo-list',
-  templateUrl: 'app/src/core/component/todolist/TodoListComponent.html',
-  styleUrls: ['app/src/core/component/todolist/TodoListComponent.css'],
+  templateUrl: 'core/component/todolist/TodoListComponent.html',
+  styleUrls: ['core/component/todolist/TodoListComponent.css'],
   directives: [TodoComponent, TodoCreation]
 })
 export class TodoListComponent {

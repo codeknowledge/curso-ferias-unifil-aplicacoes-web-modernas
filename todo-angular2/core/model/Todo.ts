@@ -1,10 +1,11 @@
-import { BaseModel } from  './BaseModel';
+import { Entity } from  './Entity';
 
-export class Todo extends BaseModel {
+export class Todo extends Entity {
 
     public name: string;
+    public order: number;
     public description: string;
     public done: boolean;
     public doneDate: Date;
-    
+
 }

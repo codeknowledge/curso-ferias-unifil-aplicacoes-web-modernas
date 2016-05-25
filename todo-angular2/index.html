@@ -9,6 +9,9 @@
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Materialize Css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+    <!-- FontAwesome Css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
+
 
     <link rel="stylesheet" href="styles.css">
 
@@ -19,14 +22,15 @@
     <script src="node_modules/reflect-metadata/Reflect.js"></script>
     <script src="node_modules/systemjs/dist/system.src.js"></script>
 
-
+    <!-- Jquery -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-
     <!-- Materialize Js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <!-- MomentJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/locale/pt-br.js"></script>
 
-
-    <script src="/app/systemjs.config.js"></script>
+    <script src="/core/systemjs.config.js"></script>
     <script>
         System.import('app').catch(function(err){ console.error(err); });
     </script>
@@ -45,23 +49,23 @@
         </div>
     </nav>
     <div class="teal lighten-5 scroll">
-            <todo-list>
-                <div class="center">
-                    <div class="preloader-wrapper active">
-                        <div class="spinner-layer spinner-yellow">
-                            <div class="circle-clipper left">
-                                <div class="circle"></div>
-                            </div>
-                            <div class="gap-patch">
-                                <div class="circle"></div>
-                            </div>
-                            <div class="circle-clipper right">
-                                <div class="circle"></div>
-                            </div>
+        <todo-list>
+            <div class="center">
+                <div class="preloader-wrapper active">
+                    <div class="spinner-layer spinner-yellow">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                            <div class="circle"></div>
                         </div>
                     </div>
                 </div>
-            </todo-list>
+            </div>
+        </todo-list>
     </div>
     <footer class="teal page-footer ">
         <div class="footer-copyright ">

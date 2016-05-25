@@ -6,12 +6,18 @@ import { TodoCreation } from '../todocreation/TodoCreation';
 
 @Component({
   selector: 'todo-list',
-  templateUrl: 'app/src/core/component/todolist/TodoListComponent.html',
+  templateUrl: 'core/component/todolist/TodoListComponent.html',
+  styleUrls: ['core/component/todolist/TodoListComponent.css'],
   directives: [TodoComponent, TodoCreation]
 })
 export class TodoListComponent {
 
   private todos = new Array<Todo>();
+
+  constructor(
+  ) {
+
+  }
 
   ngAfterViewInit(): void {
 
@@ -24,10 +30,13 @@ export class TodoListComponent {
       todo.description = `Description ${i + 1}`;
       todo.done = i % 2 ? true : false;
       if (todo.done) {
-        todo.doneDate = new Date();
+        todo.doneDate = new Date(1463796582);
       }
       this.todos.push(todo);
     }
+    setTimeout(() => {
+      Materialize.showStaggeredList('todo');
+    });
 
   }
 

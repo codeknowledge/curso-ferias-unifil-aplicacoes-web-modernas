@@ -1,0 +1,9 @@
+<div class="container">
+    <ul class="collection with-header">
+        <li class="collection-header">
+            <h4>Lista de Tarefas</h4>
+        </li>
+        <todo *ngFor="let todo of todos" [todo]="todo"></todo>
+    </ul>
+    <todo-creation></todo-creation>
+</div>

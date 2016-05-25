@@ -7,6 +7,12 @@
   "installed": {
     "jquery/jquery.d.ts": {
       "commit": "816f03f3e4a97c0f4b5dd12bb1302a1d3b8b9f7c"
+    },
+    "moment/moment.d.ts": {
+      "commit": "816f03f3e4a97c0f4b5dd12bb1302a1d3b8b9f7c"
+    },
+    "moment/moment-node.d.ts": {
+      "commit": "816f03f3e4a97c0f4b5dd12bb1302a1d3b8b9f7c"
     }
   }
 }

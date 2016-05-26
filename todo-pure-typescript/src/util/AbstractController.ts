@@ -1,3 +1,5 @@
+import { Entity } from '../model/Entity';
+
 export abstract class AbstractController<Entity> {
     public abstract save(entity : Entity) : Promise<any>;
     public abstract retrieve() : Promise<any>;

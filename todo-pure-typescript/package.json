@@ -1,23 +1,16 @@
 {
   "name": "todo-pure-typescript",
   "version": "1.0.0",
-  "description": "A pure typescript for Unifil vacation course",
-  "main": "maint.ts",
-  "scripts": {
-    "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\" ",
-    "lite": "lite-server",
-    "postinstall": "typings install",
-    "tsc": "tsc",
-    "tsc:w": "tsc -w",
-    "typings": "typings"
-  },
+  "description": "",
+  "main": "main.ts",
   "dependencies": {
-    "typescript": "^1.8.10"
+    "es6-shim": "^0.35.1",
+    "typescript": "^1.9.0-dev.20160525-1.0"
   },
   "devDependencies": {},
-  "keywords": [
-    "Typescript"
-  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "author": "Reginaldo Camargo Ribeiro",
   "license": "ISC"
 }

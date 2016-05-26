@@ -5,3 +5,7 @@
 .btn:last-child {
     margin-right: 10px;
 }
+
+.model {
+    width: 75%;
+}

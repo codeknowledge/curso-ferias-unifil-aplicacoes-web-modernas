@@ -8,14 +8,6 @@ main {
     flex: 1 0 auto;
 }
 
-footer {
-   position:fixed;
-   left:0px;
-   bottom:0px;
-   width:100%;
-   margin-top: 10px;
-}  
-
 .text-small {
     font-size: .7em;
 }

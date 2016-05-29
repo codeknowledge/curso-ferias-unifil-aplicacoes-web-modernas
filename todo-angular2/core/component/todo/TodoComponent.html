@@ -1,21 +1,25 @@
-<a href='#' [attr.data-activates]="'opt'+id" [id]="'more'+id"><i class="material-icons ">more_vert</i></a>
-<li class="collection-item" [id]="todo.id">
-    <div class="margin-bottom">
-        <span class="title" [class.finished]="todo.done">{{todo.name}}</span>
-    </div>
-    <span *ngIf="todo.done" class="text-small">
-        <i class="material-icons tiny">alarm_on</i>
-        Terminado há {{todo.doneDate | relativeTime}}
-    </span>
-    <div class="secondary-content">
+<div class="content">
+    <div class="ui right floated compact segment" (click)="toggleState()">
         <input type="checkbox" [id]="id" [(ngModel)]="todo.done" (change)="toggleState()" />
         <label [attr.for]="id"></label>
     </div>
-    <p *ngIf="todo.description" class="reset-margin">
-        {{todo.description}}
-    </p>
-</li>
-<ul id="opt{{id}}" class='dropdown-content'>
-    <li><a href="#!">Editar</a></li>
-    <li><a href="#!">Excluir</a></li>
-</ul>
+    <a class="header" [class.finished]="todo.done">{{todo.name}}</a>
+    <div class="meta" *ngIf="todo.done">
+        <span> <i class="checkmark box icon"></i> Terminado há {{todo.doneDate | relativeTime}} </span>
+    </div>
+    <div class="description" *ngIf="todo.description">
+        <p>
+            {{todo.description}}
+        </p>
+    </div>
+    <div class="extra">
+        <button class="ui green tiny labeled icon button" (click)="onEdit.emit(todo)">
+            <i class="edit icon"></i>
+            Editar
+        </button>
+        <button class="ui red tiny labeled icon button" (click)="onRemove.emit(todo)">
+            <i class="trash icon"></i>
+            Excluir
+        </button>
+    </div>
+</div>

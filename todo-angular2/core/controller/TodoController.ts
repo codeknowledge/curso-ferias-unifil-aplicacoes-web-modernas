@@ -29,20 +29,8 @@ export class TodoController extends AbstractController<Todo>{
     public afterSave(): void {
 
     }
-
-    public retrieve(id: string): Promise<Todo> {
-        return null;
-    }
-
-    public retrieveList(): Promise<Array<Todo>> {
-        return this.crudService.retrieveList();
-    }
+    
     public beforeDelete(): void {
-
-    }
-
-    public delete(entity: Todo): Promise<boolean> {
-        return null;
 
     }
 

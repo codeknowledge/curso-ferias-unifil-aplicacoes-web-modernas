@@ -20,6 +20,7 @@ export class LocalStorageCrudService<T extends Entity> extends AbstractCrudServi
 
     public save(entity: T): Promise<T> {
         return new Promise<T>((resolve, reject) => {
+            entity.creationDate = new Date();
             this.saveToStorage(entity);
             resolve(entity);
         });

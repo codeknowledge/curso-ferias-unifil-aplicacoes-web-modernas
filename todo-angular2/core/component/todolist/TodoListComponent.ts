@@ -42,15 +42,7 @@ export class TodoListComponent {
   ngAfterViewInit(): void {
 
     this.controller.retrieveList().then((todos: Array<Todo>) => {
-      todos.sort((a: Todo, b: Todo) => {
-        return a.order - b.order;
-      });
       this.todos = todos;
-      if (this.hasTodos) {
-        setTimeout(() => {
-          // Materialize.showStaggeredList('todo');
-        });
-      }
     }).catch((error) => {
       console.error(error);
     });
@@ -76,7 +68,7 @@ export class TodoListComponent {
       this.todos.splice(this.todos.indexOf(todo), 1);
     }).catch((error) => {
       console.error(error);
-    })
+    });
   }
 
 }

@@ -1,20 +1,7 @@
-<!--<div class="container">
-    <ul class="collection with-header">
-        <li class="collection-header">
-            <h4>Lista de Tarefas</h4>
-        </li>
-        <todo *ngFor="let todo of todos" [todo]="todo" (statusChange)="onTodoStatusChange($event)" (doubleClick)="editTodo($event)"></todo>
-        <li *ngIf="!hasTodos" class="collection-item center">
-            <div class="margin-bottom">
-                <span class="title">Não há tarefas cadastradas</span>
-            </div>
-        </li>
-    </ul>-->
-<!--<todo-creation [todos]="todos"></todo-creation>-->
-
 <div class="ui divided items">
     <todo class="item" *ngFor="let todo of todos" [todo]="todo" 
         (statusChange)="onTodoStatusChange($event)" 
         (onEdit)="editTodo($event)"
         (onRemove)="removeTodo($event)"></todo>
 </div>
+<todo-register [todos]="todos"></todo-register>

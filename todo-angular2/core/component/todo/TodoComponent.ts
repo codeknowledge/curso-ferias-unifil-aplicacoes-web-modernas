@@ -24,7 +24,9 @@ export class TodoComponent {
 
     @Input() todo: Todo;
     @Output() statusChange: EventEmitter<Todo> = new EventEmitter();
-
+    @Output() onEdit: EventEmitter<Todo> = new EventEmitter();
+    @Output() onRemove: EventEmitter<Todo> = new EventEmitter();
+    
     private toggleState(): void {
         this.todo.done = !this.todo.done;
         this.setDoneDate();

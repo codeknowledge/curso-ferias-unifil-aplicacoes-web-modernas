@@ -1,12 +1,12 @@
 //Angular2
-import { Component, provide } from '@angular/core';
+import { Component, provide, ViewChild } from '@angular/core';
 
 //Model
 import { Todo } from '../../model/Todo';
 
 //Component
 import { TodoComponent } from '../todo/TodoComponent';
-import { TodoCreation } from '../todocreation/TodoCreation';
+import { TodoRegister } from '../todoregister/TodoRegister';
 
 //Controller
 import { TodoController } from '../../controller/TodoController';
@@ -21,7 +21,7 @@ import { ApplicationConfig } from '../../util/ApplicationConfig';
   selector: 'todo-list',
   templateUrl: 'core/component/todolist/TodoListComponent.html',
   styleUrls: ['core/component/todolist/TodoListComponent.css'],
-  directives: [TodoComponent, TodoCreation],
+  directives: [TodoComponent, TodoRegister],
   providers: [
     provide(ApplicationConfig.CRUD_SERVICE_TOKEN, { useClass: LocalStorageCrudService }),
     provide(TodoController, { useClass: TodoController })
@@ -30,6 +30,8 @@ import { ApplicationConfig } from '../../util/ApplicationConfig';
 export class TodoListComponent {
 
   private todos: Array<Todo> = new Array<Todo>();
+
+  @ViewChild(TodoRegister) todoRegister;
 
   constructor(
     private controller: TodoController
@@ -46,11 +48,11 @@ export class TodoListComponent {
       this.todos = todos;
       if (this.hasTodos) {
         setTimeout(() => {
-          Materialize.showStaggeredList('todo');
+          // Materialize.showStaggeredList('todo');
         });
       }
     }).catch((error) => {
-      //TODO: TRATAR ERRO
+      console.error(error);
     });
 
   }
@@ -61,8 +63,20 @@ export class TodoListComponent {
 
   private onTodoStatusChange(todo: Todo) {
     this.controller.save(todo).catch((error) => {
-      //TODO: TRATAR ERRO
+      console.error(error);
     });
+  }
+
+  private editTodo(todo: Todo): void {
+    this.todoRegister.editTodo(todo);
+  }
+
+  private removeTodo(todo: Todo): void {
+    this.controller.delete(todo).then(() => {
+      this.todos.splice(this.todos.indexOf(todo), 1);
+    }).catch((error) => {
+      console.error(error);
+    })
   }
 
 }

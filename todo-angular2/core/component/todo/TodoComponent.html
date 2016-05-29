@@ -1,6 +1,6 @@
 <div class="content">
     <div class="ui right floated compact segment" (click)="toggleState()">
-        <input type="checkbox" [id]="id" [(ngModel)]="todo.done" (change)="toggleState()" />
+        <input type="checkbox" [id]="id" [(ngModel)]="todo.done"/>
         <label [attr.for]="id"></label>
     </div>
     <a class="header" [class.finished]="todo.done">{{todo.name}}</a>

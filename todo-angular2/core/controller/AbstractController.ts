@@ -48,10 +48,19 @@ export abstract class AbstractController<T extends Entity> {
     }
     public abstract afterSave(): void;
 
-    public abstract retrieve(id: string): Promise<T>;
-    public abstract retrieveList(): Promise<any>;
+    public retrieve(id: string): Promise<T> {
+        return this.crudService.retrieve(id);
+    }
+
+    public retrieveList(): Promise<any> {
+        return this.crudService.retrieveList();
+    }
     public abstract beforeDelete(): void;
-    public abstract delete(entity: T): Promise<boolean>;
+    
+    public delete(entity: T): Promise<void> {
+        return this.crudService.delete(entity);
+    }
+    
     public abstract afterDelete(): void;
 
 }

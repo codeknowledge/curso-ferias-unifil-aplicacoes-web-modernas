@@ -5,7 +5,7 @@ export class LocalStorageCrud extends AbstractCrud {
     
     private static _instance : LocalStorageCrud;
     
-    public get instance() : LocalStorageCrud {
+    public static get instance() : LocalStorageCrud {
         if(LocalStorageCrud._instance == null) {
             LocalStorageCrud._instance = new LocalStorageCrud();
         }
@@ -18,14 +18,14 @@ export class LocalStorageCrud extends AbstractCrud {
     }
     
     public save(entity: Entity): Promise<void> {
-        return new Promise<Entity>((resolve, reject) => {
+        return new Promise<void>((resolve, reject) => {
             localStorage.setItem(entity.id, JSON.stringify(entity));
         }).catch(error => {
             console.error(JSON.stringify(error));
         });
     }
 
-    public retrieve(id): Promise<Entity> {
+    public retrieve(id : string): Promise<Entity> {
         return new Promise<Entity>((resolve, reject) => {
             localStorage.getItem(id);
         }).catch(error => {
@@ -35,7 +35,7 @@ export class LocalStorageCrud extends AbstractCrud {
 
     public retrieveList(): Promise<Array<Entity>> {
         let response : Array<Entity> = new Array<Entity>();
-        return new Promise<Entity>((resolve, reject) => {
+        return new Promise<Array<Entity>>((resolve, reject) => {
             for(let i; i < localStorage.length; i++) {
                 response.push(localStorage.getItem(localStorage.key(i)))
             }
@@ -47,7 +47,7 @@ export class LocalStorageCrud extends AbstractCrud {
     }
 
     public delete(entity: Entity): Promise<void> {
-        return new Promise<Entity>((resolve, reject) => {
+        return new Promise<void>((resolve, reject) => {
             localStorage.removeItem(entity.id);
             resolve();
         }).catch(error => {
@@ -55,8 +55,8 @@ export class LocalStorageCrud extends AbstractCrud {
         });
     }
 
-    public create(entity: Entity): Promise<Entity> {
-        return new Promise<Entity>((resolve, reject) => {
+    public create(entity: Entity): Promise<void> {
+        return new Promise<void>((resolve, reject) => {
             localStorage.setItem(entity.id, JSON.stringify(entity));
         }).catch(error => {
             console.error(JSON.stringify(error));

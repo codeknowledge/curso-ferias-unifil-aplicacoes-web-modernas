@@ -37,7 +37,7 @@ export class LocalStorageCrud extends AbstractCrud {
         let response : Array<Entity> = new Array<Entity>();
         return new Promise<Array<Entity>>((resolve, reject) => {
             for(let i; i < localStorage.length; i++) {
-                response.push(localStorage.getItem(localStorage.key(i)))
+                response.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
             }
             
             resolve(response);

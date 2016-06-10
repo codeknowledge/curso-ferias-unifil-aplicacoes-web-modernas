@@ -20,6 +20,7 @@ export class LocalStorageCrud extends AbstractCrud {
     public save(entity: Entity): Promise<void> {
         return new Promise<void>((resolve, reject) => {
             localStorage.setItem(entity.id, JSON.stringify(entity));
+            resolve();
         }).catch(error => {
             console.error(JSON.stringify(error));
         });
@@ -27,7 +28,7 @@ export class LocalStorageCrud extends AbstractCrud {
 
     public retrieve(id : string): Promise<Entity> {
         return new Promise<Entity>((resolve, reject) => {
-            localStorage.getItem(id);
+            resolve(JSON.parse(localStorage.getItem(id)));
         }).catch(error => {
             console.error(JSON.stringify(error));
         });
@@ -36,7 +37,7 @@ export class LocalStorageCrud extends AbstractCrud {
     public retrieveList(): Promise<Array<Entity>> {
         let response : Array<Entity> = new Array<Entity>();
         return new Promise<Array<Entity>>((resolve, reject) => {
-            for(let i; i < localStorage.length; i++) {
+            for(let i = 0; i < localStorage.length; i++) {
                 response.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
             }
             

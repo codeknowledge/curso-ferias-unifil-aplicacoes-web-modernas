@@ -9,6 +9,7 @@ export class Todo extends Entity {
      */
     constructor(name : string, description : string) {
         super();
+        this.id = name;
         this.name = name;
         this.description = description;
     }

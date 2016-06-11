@@ -1,0 +1,16 @@
+{
+  "name": "todo-pure-typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.ts",
+  "dependencies": {
+    "es6-shim": "^0.35.1",
+    "typescript": "^1.9.0-dev.20160525-1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Reginaldo Camargo Ribeiro",
+  "license": "ISC"
+}

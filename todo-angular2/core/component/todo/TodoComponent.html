@@ -1,0 +1,23 @@
+<div class="content">
+    <div class="ui right floated compact segment" (click)="toggleState()">
+        <input type="checkbox" [id]="id" [(ngModel)]="todo.done"/>
+        <label [attr.for]="id"></label>
+    </div>
+    <a class="header" [class.finished]="todo.done">{{todo.name}}</a>
+    <div class="meta" *ngIf="todo.done">
+        <span> <i class="checkmark box icon"></i> Terminado há {{todo.doneDate | relativeTime}} </span>
+    </div>
+    <div class="description" *ngIf="todo.description">
+        <p>
+            {{todo.description}}
+        </p>
+    </div>
+    <div class="extra">
+        <button class="ui green mini icon button" (click)="onEdit.emit(todo)">
+            <i class="edit icon"></i>
+        </button>
+        <button class="ui red mini icon button" (click)="onRemove.emit(todo)">
+            <i class="trash icon"></i>
+        </button>
+    </div>
+</div>

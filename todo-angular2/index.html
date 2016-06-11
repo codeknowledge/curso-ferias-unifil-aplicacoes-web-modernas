@@ -1,0 +1,53 @@
+<html>
+
+<head>
+    <title>Angular 2 QuickStart</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Semantic UI Css -->
+    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+    <!-- FontAwesome Css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
+
+
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Polyfill(s) for older browsers -->
+    <script src="node_modules/es6-shim/es6-shim.min.js"></script>
+
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+
+
+    <!-- Jquery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <!-- Semantic UI Js -->
+    <script src="semantic/dist/semantic.min.js"></script>
+    <!-- MomentJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/locale/pt-br.js"></script>
+
+    <script src="/core/systemjs.config.js"></script>
+    <script>
+        System.import('app').catch(function(err){ console.error(err); });
+    </script>
+</head>
+
+<body>
+    <div class="ui stackable menu">
+        <div class="item">
+            <img src="core/assets/images/angular-logo.svg">
+        </div>
+    </div>
+    <div class="ui container">
+        <todo-list>
+            <div class="ui active inverted dimmer">
+                <div class="ui text loader ">Carregando Aplicação</div>
+            </div>
+        </todo-list>
+    </div>
+</body>
+
+</html>

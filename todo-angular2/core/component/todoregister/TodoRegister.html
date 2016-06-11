@@ -1,0 +1,36 @@
+<button class="fixed-action-btn circular ui green icon button large" (click)="createTodo()">
+    <i class="plus icon"></i>
+</button>
+
+<!-- Modal -->
+<div class="ui fullscreen modal" id="todoRegisterModal">
+    <i class="close icon"></i>
+    <div class="header">
+        <span *ngIf="!isEditing"> 
+            Adicione uma Nova Tarefa
+        </span>
+        <span *ngIf="isEditing"> 
+            Editando Tarefa
+        </span>
+    </div>
+    <div class="content">
+        <form class="ui form">
+            <div class="field">
+                <label>Nome da Tarefa</label>
+                <input type="text" [(ngModel)]="todo.name" maxlength="50" minlength="5" placeholder="Ir ao supermercado...">
+            </div>
+            <div class="field">
+                <label>Descrição da Tarefa</label>
+                <textarea rows="2" [(ngModel)]="todo.description" placeholder="Comprar 2 ovos, leite, farinha, etc."></textarea>
+            </div>
+        </form>
+    </div>
+    <div class="actions">
+        <div class="ui checkbox" *ngIf="!isEditing">
+            <label for="createMore">Continuar Adicinando</label>
+            <input type="checkbox" id="createMore" [(ngModel)]="createMore" />
+        </div>
+        <div class="ui red button" (click)="cancelar()">Cancelar</div>
+        <div class="ui green button" (click)="save()">Salvar</div>
+    </div>
+</div>

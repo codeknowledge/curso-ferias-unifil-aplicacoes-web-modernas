@@ -26,7 +26,7 @@ export class TodoComponent {
     @Output() statusChange: EventEmitter<Todo> = new EventEmitter();
     @Output() onEdit: EventEmitter<Todo> = new EventEmitter();
     @Output() onRemove: EventEmitter<Todo> = new EventEmitter();
-    
+
     private toggleState(): void {
         this.todo.done = !this.todo.done;
         this.setDoneDate();
@@ -39,5 +39,28 @@ export class TodoComponent {
         } else {
             this.todo.doneDate = undefined;
         }
+    }
+
+    ngAfterViewInit(): void {
+        let instance: TodoComponent = this;
+        jQuery('#confirm-modal-' + this.todo.id)
+            .modal(
+            {
+                closable: false,
+                blurring: true,
+            });
+    }
+
+    private showModal(): void {
+        jQuery('#confirm-modal-' + this.todo.id).modal('show');
+    }
+
+    private hideModal(): void {
+        jQuery('#confirm-modal-' + this.todo.id).modal('hide');
+    }
+
+    private confirmDelete(): void {
+        this.onRemove.emit(this.todo);
+        this.hideModal();
     }
 }

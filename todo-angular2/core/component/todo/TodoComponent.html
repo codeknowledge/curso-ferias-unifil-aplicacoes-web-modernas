@@ -1,11 +1,16 @@
 <div class="content">
     <div class="ui right floated compact segment" (click)="toggleState()">
-        <input type="checkbox" [id]="id" [(ngModel)]="todo.done"/>
+        <input type="checkbox" [id]="id" [(ngModel)]="todo.done" />
         <label [attr.for]="id"></label>
     </div>
     <a class="header" [class.finished]="todo.done">{{todo.name}}</a>
-    <div class="meta" *ngIf="todo.done">
-        <span> <i class="checkmark box icon"></i> Terminado há {{todo.doneDate | relativeTime}} </span>
+    <div class="meta">
+        <div *ngIf="todo.done">
+            <span> <i class="checkmark box icon"></i> Finalizado há {{todo.doneDate | relativeTime}} </span>
+        </div>
+        <div *ngIf="todo.updateDate">
+            <span *ngIf="todo.updateDate"> <i class="edit box icon"></i> Editado há {{todo.updateDate | relativeTime}} </span>
+        </div>
     </div>
     <div class="description" *ngIf="todo.description">
         <p>
@@ -16,8 +21,24 @@
         <button class="ui green mini icon button" (click)="onEdit.emit(todo)">
             <i class="edit icon"></i>
         </button>
-        <button class="ui red mini icon button" (click)="onRemove.emit(todo)">
+        <button class="ui red mini icon button" (click)="showModal()">
             <i class="trash icon"></i>
         </button>
+    </div>
+</div>
+<div class="ui modal" [id]="'confirm-modal-' + todo.id">
+    <div class="header">
+        Deseja Realmente excluir a Tafera - {{todo.name}}?
+    </div>
+    <div class="content">
+        <div class="description">
+            Esta operação não poderá ser desfeita!
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui button" (click)="hideModal()">Cancel</div>
+        <div class="ui red icon button" (click)="confirmDelete()">
+            <i class="trash icon"></i> Excluir
+        </div>
     </div>
 </div>

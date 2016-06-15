@@ -1,5 +1,6 @@
-!**/systemjs.config.js
 **/node_modules/
 **/*.js
 **/*.map
 **/semantic/
+
+!**/systemjs.config.js

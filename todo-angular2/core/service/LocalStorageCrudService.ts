@@ -9,21 +9,17 @@ import { UUID } from '../util/UUID';
 
 export class LocalStorageCrudService<T extends Entity> extends AbstractCrudService<T> {
 
-    public create(entity: T): Promise<T> {
-        return new Promise<T>((resolve, reject) => {
-            entity.id = UUID.generateUIID();
-            entity.creationDate = new Date();
-            this.saveToStorage(entity);
-            resolve(entity);
-        });
+    public create(entity: T): Promise<void> {
+        entity.id = UUID.generateUIID();
+        entity.creationDate = new Date();
+        this.saveToStorage(entity);
+        return Promise.resolve();
     }
 
-    public save(entity: T): Promise<T> {
-        return new Promise<T>((resolve, reject) => {
-            entity.creationDate = new Date();
-            this.saveToStorage(entity);
-            resolve(entity);
-        });
+    public save(entity: T): Promise<void> {
+        entity.updateDate = new Date();
+        this.saveToStorage(entity);
+        return Promise.resolve();
     }
 
     public retrieve(id: string): Promise<T> {

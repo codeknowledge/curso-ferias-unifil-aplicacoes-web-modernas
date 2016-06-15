@@ -1,7 +1,7 @@
 <div class="ui divided items">
     <todo class="item" *ngFor="let todo of todos" [todo]="todo" 
-        (statusChange)="onTodoStatusChange($event)" 
-        (onEdit)="editTodo($event)"
-        (onRemove)="removeTodo($event)"></todo>
+    (statusChange)="onTodoStatusChange($event)" 
+    (onEdit)="editTodo($event)"
+    (onRemove)="removeTodo($event)"></todo>
 </div>
 <todo-register [todos]="todos"></todo-register>

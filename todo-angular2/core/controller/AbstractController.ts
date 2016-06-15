@@ -23,7 +23,7 @@ export abstract class AbstractController<T extends Entity> {
     public create(entity: T): Promise<T> {
         return new Promise<T>((resolve, reject) => {
             this.beforeCreate();
-            this.crudService.create(entity).then((entity: T) => {
+            this.crudService.create(entity).then(() => {
                 resolve(entity);
                 this.afterCreate();
             }).catch((error) => {
@@ -38,7 +38,7 @@ export abstract class AbstractController<T extends Entity> {
     public save(entity: T): Promise<T> {
         return new Promise<T>((resolve, reject) => {
             this.beforeSave();
-            this.crudService.save(entity).then((entity: T) => {
+            this.crudService.save(entity).then(() => {
                 resolve(entity);
                 this.afterSave();
             }).catch((error) => {
@@ -56,11 +56,11 @@ export abstract class AbstractController<T extends Entity> {
         return this.crudService.retrieveList();
     }
     public abstract beforeDelete(): void;
-    
+
     public delete(entity: T): Promise<void> {
         return this.crudService.delete(entity);
     }
-    
+
     public abstract afterDelete(): void;
 
 }

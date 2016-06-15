@@ -2,3 +2,5 @@
 **/*.js
 **/*.map
 **/semantic/
+
+!**/systemjs.config.js

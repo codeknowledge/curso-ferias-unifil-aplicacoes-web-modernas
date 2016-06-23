@@ -1,43 +1,55 @@
-export class CKDOMManipulator {
-    private static valueBindingLeftOperator : string = "{{";
-    private static valueBindingRightOperator : string = "}}";
-    private static actionBindingLeftOperator : string = "(";
-    private static actionBindingRightOperator : string = ")";
+import { BinaryDOMOperator } from './BinaryDOMOperator';
+import { BindingOperator } from './BindingOperator';
+import { ActionOperator } from './ActionOperator';
+import { CKHtmlNode } from './CKHtmlNode';
+import { CKObject } from '../CKObject';
 
-    public static insertNode(anchorSelector : string, html : string) : void {
-
+export class DOMManipulator {
+    private static _instance : DOMManipulator;
+    private bindingOperator : BindingOperator;
+    private actionOperator : ActionOperator;
+    
+    public static get instance() : DOMManipulator {
+        if(DOMManipulator._instance == null) {
+            DOMManipulator._instance = new DOMManipulator();
+        }
+        
+        return DOMManipulator._instance;
     }
 
-    public static removeNode(anchorSelector : string, nodeSelector : string) : void {
-
+    constructor() {
+        this.bindingOperator = new BindingOperator();
+        this.actionOperator = new ActionOperator();
     }
 
-    public static updateNode(anchorSelector : string, nodeSelector : string, newHtml : string) : void {
-
+    private insertNode(anchorSelector : string, html : string) : void {
+        jQuery(anchorSelector).append(html);
     }
 
-    public static extractValueBindings(html : string) : Array<string> {
-        let unleftedHtmlArray : Array<string> = html.split(CKDOMManipulator.valueBindingLeftOperator);
-        let valueBindings : Array<string> = new Array<string>();
+    private removeNode(anchorSelector : string, nodeSelector : string) : void {
+        jQuery(anchorSelector).remove(nodeSelector);
+    }
 
-        unleftedHtmlArray.forEach(leftSplitedHtml => {
-            let rightSplitedHtmlArray : Array<string> = leftSplitedHtml.split(CKDOMManipulator.valueBindingRightOperator);
-            if(rightSplitedHtmlArray.length > 1) {
-                valueBindings.push(rightSplitedHtmlArray[0]);
-            }
+    private updateNode(anchorSelector : string, nodeSelector : string, newHtml : string) : void {
+        this.removeNode(anchorSelector, nodeSelector);
+        this.insertNode(anchorSelector, newHtml);
+    }
+
+    public reflect(scope : any, htmlNode : CKHtmlNode) : void {
+        let reflectedHtml : string = this.reflectStrategically(scope, htmlNode, BindingOperator);
+        //reflectedHtml = this.reflectStrategically(scope, htmlNode, ActionOperator);
+
+        this.updateNode(htmlNode.anchor, htmlNode.selector, reflectedHtml);
+    }
+
+    private reflectStrategically<T extends BinaryDOMOperator>(scope : any, htmlNode : CKHtmlNode, operator : new () => T) : string {
+        let reflectStrategy : BinaryDOMOperator = new operator();
+        let bindingPaths : Array<string> = reflectStrategy.extractOperatorPaths(htmlNode.html);
+        let bindingValues : Array<string> = new Array<string>();
+        bindingPaths.forEach(valueBindingPath => {
+            bindingValues.push(CKObject.invoke(scope, valueBindingPath));
         });
 
-        return valueBindings;
-    }
-
-    public static applyValueBindings(valueBindingsPaths : Array<string>, valueBindingsValues : Array<string>, html : string) : string {
-        valueBindingsPaths.forEach((bindingPath : string, index) => {
-            html = html.replace(CKDOMManipulator.valueBindingLeftOperator+bindingPath+CKDOMManipulator.valueBindingRightOperator, valueBindingsValues[index]);
-        });
-        return html;
-    }
-
-    public static extractActionBindings(html : string) {
-
+        return reflectStrategy.applyOperatorValues(bindingPaths, bindingValues, htmlNode.html);
     }
 }

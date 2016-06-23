@@ -1,4 +1,5 @@
 import { Entity } from './Entity';
+import { UUID } from '../util/UUID';
 
 export class Todo extends Entity {
     public name : string;
@@ -14,5 +15,6 @@ export class Todo extends Entity {
         this.name = name;
         this.description = description;
         this.done = false;
+        this.id = UUID.s4();
     }
 }

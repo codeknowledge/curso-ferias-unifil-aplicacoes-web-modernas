@@ -1,7 +1,7 @@
 <todo-view id="{{todo.id}}">
     <div class="content">
         <div class="ui right floated compact segment">
-            <input type="checkbox" onclick="<<toggleState>>" />
+            <input type="checkbox" ((toggleState)) />
             <label [attr.for]="id">Nome: {{todo.name}}</label>
         </div>
         <a class="header name" [class.finished]="todo.done"></a>

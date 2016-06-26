@@ -1,7 +1,7 @@
-import { BinaryDOMOperator } from './BinaryDOMOperator';
+import { OperationResult, BinaryDOMOperator } from './BinaryDOMOperator';
 
 export class BindingOperator extends BinaryDOMOperator {
-    
+
     /**
      *
      */
@@ -11,10 +11,10 @@ export class BindingOperator extends BinaryDOMOperator {
         this.rightOperator = "}}";
     }
 
-    public applyOperatorValues(valueBindingsPaths : Array<string>, valueBindingsValues : Array<string>, html : string) : string {
-        valueBindingsPaths.forEach((bindingPath : string, index) => {
-            html = html.replace(this.leftOperator+bindingPath+this.rightOperator, valueBindingsValues[index]);
+    public applyOperatorValues(scope: any, valueBindingsPaths: Array<string>, valueBindingsValues: Array<string>, html: string): OperationResult {
+        valueBindingsPaths.forEach((bindingPath: string, index) => {
+            html = html.replace(this.leftOperator + bindingPath + this.rightOperator, valueBindingsValues[index]);
         });
-        return html;
+        return { html: html };
     }
 }

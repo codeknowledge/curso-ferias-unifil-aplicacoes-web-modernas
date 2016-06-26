@@ -5,6 +5,10 @@ export class CKHtmlNode {
     public selector : string;
     public html : string;
 
+    public get copy() : CKHtmlNode {
+        return new CKHtmlNode(this.anchor, this.selector, this.html);
+    }
+
     constructor(anchor : string, selector : string, html : string) {
         this.anchor = anchor;
         this.selector = selector;

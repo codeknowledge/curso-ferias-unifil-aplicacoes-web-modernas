@@ -16,7 +16,12 @@ export class BinaryDOMOperator {
         return operatorValues;
     }
 
-    public applyOperatorValues(valueBindingsPaths : Array<string>, valueBindingsValues : Array<string>, html : string) : string {
-        return "";
+    public applyOperatorValues(scope : any, valueBindingsPaths : Array<string>, valueBindingsValues : Array<any>, html : string) : OperationResult {
+        return null;
     }
+}
+
+export interface OperationResult {
+    html : string;
+    hostAttrs ?: Array<string>;
 }

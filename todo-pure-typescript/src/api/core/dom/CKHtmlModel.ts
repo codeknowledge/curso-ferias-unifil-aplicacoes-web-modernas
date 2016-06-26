@@ -13,6 +13,6 @@ export class CKHtmlModel {
 
     public applyScopeChange(scope : any) : void {
         this.scope = scope;
-        DOMManipulator.instance.reflect(scope, this._originalHtmlNode);
+        DOMManipulator.instance.reflect(scope, this._originalHtmlNode.copy);
     }
 }

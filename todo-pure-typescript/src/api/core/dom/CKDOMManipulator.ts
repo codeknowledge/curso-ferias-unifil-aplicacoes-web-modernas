@@ -1,55 +1,50 @@
-import { BinaryDOMOperator } from './BinaryDOMOperator';
-import { BindingOperator } from './BindingOperator';
-import { ActionOperator } from './ActionOperator';
+import { ReflectionStrategy } from './strategy/ReflectionStrategy';
+import { StrategyResult } from './strategy/StrategyResult';
+import { ActionBindingReflectionStrategy } from './strategy/ActionBindingReflectionStrategy';
+import { ValueBindingReflectionStrategy } from './strategy/ValueBindingReflectionStrategy';
 import { CKHtmlNode } from './CKHtmlNode';
 import { CKObject } from '../CKObject';
 
 export class DOMManipulator {
-    private static _instance : DOMManipulator;
-    private bindingOperator : BindingOperator;
-    private actionOperator : ActionOperator;
-    
-    public static get instance() : DOMManipulator {
-        if(DOMManipulator._instance == null) {
+    private static _instance: DOMManipulator;
+
+    public static get instance(): DOMManipulator {
+        if (DOMManipulator._instance == null) {
             DOMManipulator._instance = new DOMManipulator();
         }
-        
+
         return DOMManipulator._instance;
     }
 
     constructor() {
-        this.bindingOperator = new BindingOperator();
-        this.actionOperator = new ActionOperator();
+        
     }
 
-    private insertNode(anchorSelector : string, html : string) : void {
-        jQuery(anchorSelector).append(html);
+    private insertNode(anchorSelector: string, html: string): JQuery {
+        return jQuery(anchorSelector).append(html);
     }
 
-    private removeNode(anchorSelector : string, nodeSelector : string) : void {
-        jQuery(anchorSelector).remove(nodeSelector);
+    private removeNode(anchorSelector: string, nodeSelector: string): JQuery {
+        return jQuery(anchorSelector).remove(nodeSelector);
     }
 
-    private updateNode(anchorSelector : string, nodeSelector : string, newHtml : string) : void {
+    private updateNode(anchorSelector: string, nodeSelector: string, newHtml: string): JQuery {
         this.removeNode(anchorSelector, nodeSelector);
-        this.insertNode(anchorSelector, newHtml);
+        return this.insertNode(anchorSelector, newHtml);
     }
 
-    public reflect(scope : any, htmlNode : CKHtmlNode) : void {
-        let reflectedHtml : string = this.reflectStrategically(scope, htmlNode, BindingOperator);
-        //reflectedHtml = this.reflectStrategically(scope, htmlNode, ActionOperator);
+    public reflect(scope: any, htmlNode: CKHtmlNode): void {
+        let strategyResult: StrategyResult = this.reflectStrategically(scope, htmlNode, ValueBindingReflectionStrategy);
+        htmlNode.html = strategyResult.html;
+        strategyResult = this.reflectStrategically(scope, htmlNode, ActionBindingReflectionStrategy);
 
-        this.updateNode(htmlNode.anchor, htmlNode.selector, reflectedHtml);
-    }
-
-    private reflectStrategically<T extends BinaryDOMOperator>(scope : any, htmlNode : CKHtmlNode, operator : new () => T) : string {
-        let reflectStrategy : BinaryDOMOperator = new operator();
-        let bindingPaths : Array<string> = reflectStrategy.extractOperatorPaths(htmlNode.html);
-        let bindingValues : Array<string> = new Array<string>();
-        bindingPaths.forEach(valueBindingPath => {
-            bindingValues.push(CKObject.invoke(scope, valueBindingPath));
+        this.updateNode(htmlNode.anchor, htmlNode.selector, strategyResult.html).ready(() => {
+            ActionBindingReflectionStrategy.applyActions(strategyResult.actionHostAttrs);
         });
+    }
 
-        return reflectStrategy.applyOperatorValues(bindingPaths, bindingValues, htmlNode.html);
+    private reflectStrategically<T extends ReflectionStrategy>(scope: any, htmlNode: CKHtmlNode, strategy: new () => T): StrategyResult {
+        let reflectStrategy: ReflectionStrategy = new strategy();
+        return reflectStrategy.reflect(scope, htmlNode);
     }
 }

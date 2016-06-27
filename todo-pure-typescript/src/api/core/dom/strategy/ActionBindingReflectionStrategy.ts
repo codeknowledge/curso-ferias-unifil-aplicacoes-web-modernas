@@ -28,7 +28,7 @@ export class ActionBindingReflectionStrategy extends ReflectionStrategy {
     public static applyActions(hostAttrs : Array<string>) : void {
         hostAttrs.forEach(attr => {
             let action : Action = ActionMap.instance.getAction(attr);
-            jQuery("["+attr+"]").on(action.type, (params) => {
+            jQuery("["+attr+"]").on(action.type+".ckAPI", (params) => {
                 action.func.apply(action.scope, [params]);
             });
         });

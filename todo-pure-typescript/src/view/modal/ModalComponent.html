@@ -1,31 +1,50 @@
 <div class="ui fullscreen modal" id="{{modalId}}">
     <i class="close icon"></i>
     <div class="header">
-        <span *ngIf="!isEditing"> 
+        <div {{whenCreating}}> 
             Adicione uma Nova Tarefa
-        </span>
-        <span *ngIf="isEditing"> 
+        </div>
+        <div {{whenEditing}}> 
             Editando Tarefa
-        </span>
+        </div>
+        <div {{whenRemoving}}> 
+            Tem certeza de que deseja excluir essa tarefa?
+        </div>
     </div>
     <div class="content">
-        <form class="ui form">
-            <div class="field">
-                <label>Nome da Tarefa</label>
-                <input type="text" ((change:setTodoName)) maxlength="50" minlength="5" placeholder="Ir ao supermercado...">
+        <div {{whenNotRemoving}}>
+            <form class="ui form">
+                <div class="field">
+                    <label>Nome da Tarefa</label>
+                    <input type="text" ((change:setTodoName)) value="{{todo.name}}" maxlength="50" minlength="5" placeholder="Ir ao supermercado...">
+                </div>
+                <div class="field">
+                    <label>Descrição da Tarefa</label>
+                    <textarea rows="2" ((change:setTodoDescription)) placeholder="Comprar 2 ovos, leite, farinha, etc.">{{todo.description}}</textarea>
+                </div>
+            </form>
+        </div>
+        <div {{whenRemoving}}>
+            <div class="ui aligned center container">
+                <div class="ui basic segment">
+                    <label class="ui label">Nome da Tarefa</label>
+                    <label>{{todo.name}}</label>
+                </div>
+                <div class="ui basic segment">
+                    <label class="ui label">Descrição da Tarefa</label>
+                    <label>{{todo.description}}</label>
+                </div>
             </div>
-            <div class="field">
-                <label>Descrição da Tarefa</label>
-                <textarea rows="2" ((change:setTodoDescription)) placeholder="Comprar 2 ovos, leite, farinha, etc."></textarea>
-            </div>
-        </form>
+        </div>
     </div>
     <div class="actions">
-        <div class="ui checkbox" *ngIf="!isEditing">
-            <label for="createMore">Continuar Adicinando</label>
-            <input type="checkbox" id="createMore" [(ngModel)]="createMore" />
+        <div {{whenNotRemoving}}>
+            <div class="ui deny red button" ((click:clean))>Cancelar</div>
+            <div class="ui approve green button" ((click:setTodo))>Salvar</div>
         </div>
-        <div class="ui deny red button" (click)="cancelar()">Cancelar</div>
-        <div class="ui approve green button" ((click:setTodo))>Salvar</div>
+        <div {{whenRemoving}}>
+            <div class="ui deny button" ((click:clean))>Voltar</div>
+            <div class="ui approve red button" ((click:remove))>Remover</div>
+        </div>
     </div>
 </div>

@@ -55,4 +55,8 @@ export class DOMManipulator {
         let reflectStrategy: ReflectionStrategy = new strategy();
         return reflectStrategy.reflect(scope, htmlNode);
     }
+
+    public destroy(scope: any, htmlNode : CKHtmlNode) : void {
+        this.removeNode(htmlNode.anchor, "["+htmlNode.attr+"]");
+    }
 }

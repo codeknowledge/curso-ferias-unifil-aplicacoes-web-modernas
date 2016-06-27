@@ -15,4 +15,8 @@ export class CKHtmlModel {
         this.scope = scope;
         DOMManipulator.instance.reflect(scope, this._originalHtmlNode.copy);
     }
+
+    public destroy() {
+        DOMManipulator.instance.destroy(this.scope, this._originalHtmlNode);
+    }
 }

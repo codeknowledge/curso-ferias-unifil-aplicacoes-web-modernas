@@ -24,46 +24,27 @@ export class TodoModalService {
 
     public createService(todoListView: TodoListView): TodoModalService {
         this.todoListView = todoListView;
-        let instance: TodoModalService = this;
-        this.modalComponent.createView().then(() => {
-            instance.configureService();
-        });
-
         return this;
     }
 
-    public openModal(onConfirm: (todo: Todo) => void, onDecline: () => void, todo?: Todo): void {
+    public openModal(onConfirm: (todo: Todo) => void, onDecline?: () => void, todo?: Todo, removing ?: boolean): void {
         this.onConfirm = onConfirm;
         this.onDecline = onDecline;
         this.todo = todo;
-
-        if (this.todo) {
-            jQuery("#" + this.modalComponent.modalId).modal("show");
+        if(!removing) {
+            this.modalComponent.startEditing(todo);
         } else {
-            jQuery("#" + this.modalComponent.modalId).modal("show");
+            this.modalComponent.startRemoving(todo);
         }
-
-        this.modalComponent.startEditing(todo);
-
-        console.log("open modal called >> ", this.modalComponent.modalId);
-    }
-
-    private editTodo(): void {
-
-    }
-
-    private configureService(): void {
-        let instance: TodoModalService = this;
-        jQuery("#" + this.modalComponent.modalId).modal({
-            onDeny: () => {
-                if (instance.onDecline) {
-                    instance.onDecline();
-                }
-            }
-        });
     }
 
     public setTodo(todo: Todo): void {
+        if (this.onConfirm) {
+            this.onConfirm(todo);
+        }
+    }
+
+    public removeTodo(todo: Todo): void {
         if (this.onConfirm) {
             this.onConfirm(todo);
         }

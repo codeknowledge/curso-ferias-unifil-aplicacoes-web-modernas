@@ -2,7 +2,7 @@ import { CKHtmlModel } from './dom/CKHtmlModel';
 import { DOMManipulator } from './dom/CKDOMManipulator';
 
 export class CKComponent {
-    private htmlModel: CKHtmlModel;
+    protected htmlModel: CKHtmlModel;
     private static lastId: number = 0;
     private id: number;
 
@@ -27,5 +27,9 @@ export class CKComponent {
 
     protected applyScopeChange() {
         this.htmlModel.applyScopeChange(this);
+    }
+
+    protected destroy() {
+        this.htmlModel.destroy();
     }
 }

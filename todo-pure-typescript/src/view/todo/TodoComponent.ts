@@ -3,6 +3,8 @@ import { Todo } from '../../model/Todo';
 //api
 import { CKComponent } from '../../api/core/CKComponent';
 import { LocalStorageCrud } from '../../util/LocalStorageCrud';
+//service
+import { TodoModalService } from '../../service/TodoModalService';
 
 //Util
 export class TodoComponent extends CKComponent{
@@ -36,11 +38,24 @@ export class TodoComponent extends CKComponent{
     }
 
     private edit() : void {
-        console.log("Editing todo!!!");
+        let instance : TodoComponent = this;
+        TodoModalService.instance.openModal((todo : Todo) => {
+            instance.todo = todo;
+            instance.applyScopeChange();
+            LocalStorageCrud.instance.save(instance.todo);
+        }, () => {
+
+        }, this.todo, false);
     }
 
     private remove() : void {
-        console.log("Removing Todo!!!");
+        let instance : TodoComponent = this;
+        TodoModalService.instance.openModal((todo : Todo) => {
+            LocalStorageCrud.instance.delete(instance.todo);
+            this.destroy();
+        }, () => {
+
+        }, this.todo, true);
     }
 
     private get hidden() : string {

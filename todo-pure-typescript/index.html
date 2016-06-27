@@ -1,0 +1,38 @@
+<html>
+
+<head>
+    <!-- Semantic UI Css -->
+    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <title>Aplicações Web Modernas com Angular2</title>
+</head>
+
+<body>
+    <div class="ui stackable menu">
+        <div class="item">
+            <img src="src/assets/images/ts-logo.png">
+        </div>
+        <div class="ui container wide">
+            <h2>Aplicações Web Modernas com Angular2</h2>
+        </div>
+    </div>
+    <div class="ui container">
+        <div id="mainContent">
+            
+        </div>
+    </div>
+    
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <!-- Semantic UI Js -->
+    <script src="semantic/dist/semantic.min.js"></script>
+    
+    <script src="config.js"></script>
+    <script type="text/javascript">   
+
+        // loads /app/main.js
+        System.import('Main');
+    </script>
+</body>
+
+</html>

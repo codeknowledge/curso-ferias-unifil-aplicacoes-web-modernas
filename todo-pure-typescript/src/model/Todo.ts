@@ -7,6 +7,10 @@ export class Todo extends Entity {
     public done : boolean;
     public doneDate : Date;
 
+    public get donePrettyDate() : string {
+        return moment(this.doneDate).fromNow();
+    }
+
     public get open() : boolean {
         return !this.done;
     }

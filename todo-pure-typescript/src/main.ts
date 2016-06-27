@@ -5,10 +5,8 @@ import { DOMManipulator } from './api/core/dom/CKDOMManipulator';
 import { AbstractController } from './util/AbstractController';
 import { LocalStorageCrud } from './util/LocalStorageCrud';
 import { Todo } from './model/Todo';
-import { TodoView } from './view/todoview/TodoView';
+import { TodoListView } from './view/todolist/TodoListView';
 
 (() => {
-    jQuery("#mainContent").load("src/view/todolistview/TodoListView.html", () => {
-        new TodoView("name test", "description test");
-    });
+    new TodoListView();
 })();

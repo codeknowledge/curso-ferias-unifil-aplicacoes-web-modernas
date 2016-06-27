@@ -1,17 +1,4 @@
-<link rel="stylesheet" href="src/view/todolistview/TodoListView.css">
-
-<div id="todo-list">
-   <!-- The list goes here -->
-</div>
-
-<!-- MODAIS --->
-
-<button class="fixed-action-btn circular ui green icon button large" (click)="createTodo()">
-    <i class="plus icon"></i>
-</button>
-
-<!-- Modal -->
-<div class="ui fullscreen modal" id="todoRegisterModal">
+<div class="ui fullscreen modal" id="{{modalId}}">
     <i class="close icon"></i>
     <div class="header">
         <span *ngIf="!isEditing"> 
@@ -25,11 +12,11 @@
         <form class="ui form">
             <div class="field">
                 <label>Nome da Tarefa</label>
-                <input type="text" [(ngModel)]="todo.name" maxlength="50" minlength="5" placeholder="Ir ao supermercado...">
+                <input type="text" ((change:setTodoName)) maxlength="50" minlength="5" placeholder="Ir ao supermercado...">
             </div>
             <div class="field">
                 <label>Descrição da Tarefa</label>
-                <textarea rows="2" [(ngModel)]="todo.description" placeholder="Comprar 2 ovos, leite, farinha, etc."></textarea>
+                <textarea rows="2" ((change:setTodoDescription)) placeholder="Comprar 2 ovos, leite, farinha, etc."></textarea>
             </div>
         </form>
     </div>
@@ -38,7 +25,7 @@
             <label for="createMore">Continuar Adicinando</label>
             <input type="checkbox" id="createMore" [(ngModel)]="createMore" />
         </div>
-        <div class="ui red button" (click)="cancelar()">Cancelar</div>
-        <div class="ui green button" (click)="save()">Salvar</div>
+        <div class="ui deny red button" (click)="cancelar()">Cancelar</div>
+        <div class="ui approve green button" ((click:setTodo))>Salvar</div>
     </div>
 </div>

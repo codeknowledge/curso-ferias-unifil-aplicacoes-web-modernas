@@ -16,7 +16,7 @@ export class BinaryDOMOperator {
         return operatorValues;
     }
 
-    public applyOperatorValues(scope : any, valueBindingsPaths : Array<string>, valueBindingsValues : Array<any>, html : string) : OperationResult {
+    public applyOperatorValues(scope : any, valueBindingsPaths : Array<string>, valueBindingsValues : Array<any>, html : string, actionTypes ?: Array<string>) : OperationResult {
         return null;
     }
 }

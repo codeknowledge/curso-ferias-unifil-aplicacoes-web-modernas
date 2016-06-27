@@ -1,0 +1,25 @@
+<todo-view id="{{todo.id}}">
+    <div class="ui segment todo">
+        <div class="ui compact">
+            <input type="checkbox" ((click:toggleState)) {{checked}}/>
+            <label for="{{todo.id}}">Nome: {{todo.name}}</label>
+        </div>
+        <a class="{{classes}}"></a>
+        <div class="meta" {{hidden}}>
+            <span> <i class="checkmark box icon"></i> Terminado em {{todo.doneDate}} </span>
+        </div>
+        <div class="description" *ngIf="todo.description">
+            <p>
+                {{todo.description}}
+            </p>
+        </div>
+        <div class="extra">
+            <button class="ui green mini icon button" ((click:edit))>
+            <i class="edit icon"></i>
+        </button>
+            <button class="ui red mini icon button" ((click:remove))>
+            <i class="trash icon"></i>
+        </button>
+        </div>
+    </div>
+</todo-view>

@@ -23,3 +23,7 @@
 .finished {
     text-decoration: line-through;
 }
+
+.todo {
+    margin-bottom: 10px !important;
+}

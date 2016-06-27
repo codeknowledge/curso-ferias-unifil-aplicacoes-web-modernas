@@ -21,16 +21,24 @@ export class DOMManipulator {
     }
 
     private insertNode(anchorSelector: string, html: string): JQuery {
-        return jQuery(anchorSelector).append(html);
+        return jQuery(anchorSelector).append(html).children().last();
     }
 
     private removeNode(anchorSelector: string, nodeSelector: string): JQuery {
-        return jQuery(anchorSelector).remove(nodeSelector);
+        return jQuery(anchorSelector).find(nodeSelector).remove();
     }
 
-    private updateNode(anchorSelector: string, nodeSelector: string, newHtml: string): JQuery {
-        this.removeNode(anchorSelector, nodeSelector);
-        return this.insertNode(anchorSelector, newHtml);
+    private updateNode(anchorSelector: string, attr: string, newHtml: string): JQuery {
+        let nodeSelector : string = "["+attr+"]";
+        if(jQuery(anchorSelector).find(nodeSelector).length > 0) {
+            let newContent = jQuery(newHtml);
+            let removedElement = jQuery(anchorSelector).find(nodeSelector).replaceWith(newContent).remove();
+            newContent.attr(attr, "");
+            return newContent;
+        } else {
+            return this.insertNode(anchorSelector, newHtml).attr(attr, "");
+        }
+        
     }
 
     public reflect(scope: any, htmlNode: CKHtmlNode): void {
@@ -38,7 +46,7 @@ export class DOMManipulator {
         htmlNode.html = strategyResult.html;
         strategyResult = this.reflectStrategically(scope, htmlNode, ActionBindingReflectionStrategy);
 
-        this.updateNode(htmlNode.anchor, htmlNode.selector, strategyResult.html).ready(() => {
+        this.updateNode(htmlNode.anchor, htmlNode.attr, strategyResult.html).ready(() => {
             ActionBindingReflectionStrategy.applyActions(strategyResult.actionHostAttrs);
         });
     }

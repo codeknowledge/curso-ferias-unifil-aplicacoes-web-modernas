@@ -1,6 +1,7 @@
 export interface Action {
     scope : any;
     func : Function;
+    type : string;
 }
 
 export class ActionMap {

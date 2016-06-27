@@ -6,8 +6,8 @@ export class CKHtmlModel {
     private _originalHtmlNode : CKHtmlNode; 
     private scope : any;
 
-    constructor(anchor : string, selector : string, html : string, scope : any) {
-        this._originalHtmlNode = new CKHtmlNode(anchor, selector, html);
+    constructor(anchor : string, attr : string, html : string, scope : any) {
+        this._originalHtmlNode = new CKHtmlNode(anchor, attr, html);
         this.applyScopeChange(scope);
     }
 

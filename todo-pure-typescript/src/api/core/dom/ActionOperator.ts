@@ -11,10 +11,10 @@ export class ActionOperator extends BinaryDOMOperator {
         this.rightOperator = "))";
     }
 
-    public applyOperatorValues(scope: any, valueBindingsPaths: Array<string>, valueBindingsValues: Array<Function>, html: string): OperationResult {
+    public applyOperatorValues(scope: any, valueBindingsPaths: Array<string>, valueBindingsValues: Array<Function>, html: string, actionTypes ?: Array<string>): OperationResult {
         let hostAttrs : Array<string> = new Array<string>();
         valueBindingsPaths.forEach((bindingPath: string, index) => {
-            let hostAttr: string = ActionMap.instance.regiterAction({ scope: scope, func: valueBindingsValues[index] });
+            let hostAttr: string = ActionMap.instance.regiterAction({ scope: scope, func: valueBindingsValues[index], type: actionTypes[index] });
             hostAttrs.push(hostAttr);
             html = html.replace(this.leftOperator + bindingPath + this.rightOperator, hostAttr);
         });

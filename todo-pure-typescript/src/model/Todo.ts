@@ -7,6 +7,10 @@ export class Todo extends Entity {
     public done : boolean;
     public doneDate : Date;
 
+    public get open() : boolean {
+        return !this.done;
+    }
+
     /**
      *
      */

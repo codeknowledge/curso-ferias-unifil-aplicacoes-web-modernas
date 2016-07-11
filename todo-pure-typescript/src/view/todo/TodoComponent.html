@@ -1,8 +1,11 @@
 <todo-view class="ui item" id="{{todo.id}}">
     <div class="ui fluid container todo collection-item">
         <div class="ui extra">
-            <label class="left floated hand {{classes}}" for="checkbox-{{todo.id}}">Name: {{todo.name}}</label>
-            <input class="ui checkbox right floated hand hover-visible" id="checkbox-{{todo.id}}" type="checkbox" ((click:toggleState)) {{checked}}/>
+            <label class="hand left floated {{classes}}" for="checkbox-{{todo.id}}">Name: {{todo.name}}</label>
+            <div class="ui checkbox hand hover-visible right floated">
+                <input class="hand" id="checkbox-{{todo.id}}" type="checkbox" ((click:toggleState)) {{checked}}/>
+                <label></label>
+            </div>
         </div>
         <div class="ui extra" {{finished}}>
             <div> <i class="green database icon"></i> Created in {{todo.creationPrettyDate}} </div>

@@ -50,12 +50,14 @@ export class TodoComponent extends CKComponent{
 
     private remove() : void {
         let instance : TodoComponent = this;
+        let clonedTodo : Todo = this.todo.clone();
+        clonedTodo.dueDate = new Date(clonedTodo.dueDate.toUTCString());
         TodoModalService.instance.openModal((todo : Todo) => {
             LocalStorageCrud.instance.delete(instance.todo);
             this.destroy();
         }, () => {
 
-        }, this.todo, true);
+        }, clonedTodo, true);
     }
 
     private get finished() : string {

@@ -26,6 +26,7 @@ export class TodoListView extends CKComponent {
                     todo.doneDate = todoResp.doneDate ? new Date(<any>todoResp.doneDate) : null;
                     todo.id = todoResp.id;
                     todo.updateDate = todoResp.updateDate ? new Date(<any>todoResp.updateDate) : null;
+                    todo.dueDate = todoResp.dueDate ? new Date(<any>todoResp.dueDate) : null;
 
                     let todoComp : TodoComponent = new TodoComponent(todo);
                     todoComp.createView().then(() => {

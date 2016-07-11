@@ -19,9 +19,8 @@
                     <input type="text" ((change:setTodoName)) value="{{todo.name}}" maxlength="50" minlength="5" placeholder="Go to supermarket...">
                 </div>
                 <div class="field">
-                    <label>Task Name</label>
+                    <label>Due Date</label>
                     <input type="date" ((change:setDueDate)) value="{{todo.formattedDueDate}}">
-                    {{todo.formattedDueDate}}
                 </div>
                 <div class="field">
                     <label>Task Description</label>
@@ -36,6 +35,10 @@
                     <label>{{todo.name}}</label>
                 </div>
                 <div class="ui basic segment">
+                    <label class="ui label">Due Date</label>
+                    <label>{{todo.duePrettyDate}}</label>
+                </div>
+                <div class="ui basic segment">
                     <label class="ui label">Task Description</label>
                     <label>{{todo.description}}</label>
                 </div>
@@ -48,7 +51,7 @@
             <div class="ui approve green button" ((click:setTodo))>Save</div>
         </div>
         <div {{whenRemoving}}>
-            <div class="ui deny button" ((click:clean))>Voltar</div>
+            <div class="ui deny button" ((click:clean))>Back</div>
             <div class="ui approve red button" ((click:remove))>Remove</div>
         </div>
     </div>

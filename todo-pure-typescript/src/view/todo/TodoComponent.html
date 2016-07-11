@@ -1,25 +1,32 @@
 <todo-view id="{{todo.id}}">
-    <div class="ui segment todo">
+    <div class="ui segment todo collection-item">
         <div class="ui compact">
-            <input type="checkbox" ((click:toggleState)) {{checked}}/>
-            <label for="{{todo.id}}">Nome: {{todo.name}}</label>
+            <input class="hand" id="checkbox-{{todo.id}}" type="checkbox" ((click:toggleState)) {{checked}}/>
+            <label class="hand {{classes}}" for="checkbox-{{todo.id}}">Name: {{todo.name}}</label>
         </div>
-        <a class="{{classes}}"></a>
-        <div class="meta" {{hidden}}>
-            <span> <i class="checkmark box icon"></i> Terminado em {{todo.donePrettyDate}} </span>
+        <div class="meta" {{finished}}>
+            <div> <i class="green database icon"></i> Created in {{todo.creationPrettyDate}} </div>
+            <div> <i class="checkmark box icon"></i> Finished in {{todo.donePrettyDate}} </div>
+            <div class="description">
+                <p>
+                    {{todo.description}}
+                </p>
+            </div>
         </div>
-        <div class="description">
-            <p>
-                {{todo.description}}
-            </p>
-        </div>
-        <div class="extra">
+        <div class="extra" {{open}}>
+            <div> <i class="green database icon"></i> Created in {{todo.creationPrettyDate}} </div>
+            <div> <i class="blue info icon"></i> Edited in {{todo.updatePrettyDate}} </div>
+            <div class="description">
+                <p>
+                    {{todo.description}}
+                </p>
+            </div>
             <button class="ui green mini icon button" ((click:edit))>
-            <i class="edit icon"></i>
-        </button>
+                <i class="edit icon"></i>
+            </button>
             <button class="ui red mini icon button" ((click:remove))>
-            <i class="trash icon"></i>
-        </button>
+                <i class="trash icon"></i>
+            </button>
         </div>
     </div>
 </todo-view>

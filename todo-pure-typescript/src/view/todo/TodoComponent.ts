@@ -58,8 +58,12 @@ export class TodoComponent extends CKComponent{
         }, this.todo, true);
     }
 
-    private get hidden() : string {
+    private get finished() : string {
         return this.todo.open ? "hidden" : "";
+    }
+
+    private get open() : string {
+        return this.todo.done ? "hidden" : "";
     }
 
     private get checked() : string {

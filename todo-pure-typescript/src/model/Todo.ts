@@ -6,9 +6,26 @@ export class Todo extends Entity {
     public description : string;
     public done : boolean;
     public doneDate : Date;
+    public conclusionDate : Date;
 
     public get donePrettyDate() : string {
-        return moment(this.doneDate).fromNow();
+        return this.prettyDate(this.doneDate);
+    }
+
+    public get creationPrettyDate() : string {
+        return this.prettyDate(this.creationDate);
+    }
+
+    public get updatePrettyDate() : string {
+        return this.prettyDate(this.updateDate);
+    }
+
+    public get conclusionPrettyDate() : string {
+        return this.prettyDate(this.conclusionDate);
+    }
+
+    private prettyDate(date : Date) {
+        return date ? date.toDateString() + " at " + date.toTimeString() : "";
     }
 
     public get open() : boolean {

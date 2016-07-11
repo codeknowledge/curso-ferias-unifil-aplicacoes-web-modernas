@@ -2,18 +2,9 @@
     font-size: 1.5em;
 }
 
-.margin-bottom {
-    margin-bottom: 5px;
-}
-
-.reset-margin {
-    margin-top: 0;
-    margin-bottom: 0;
-}
-
 .collection-item:hover {
     background: #E0F2F1;
-    transition: ease-in-out 200ms;
+    transition: ease-in-out 400ms;
 }
 
 .collection-item:last-child {    

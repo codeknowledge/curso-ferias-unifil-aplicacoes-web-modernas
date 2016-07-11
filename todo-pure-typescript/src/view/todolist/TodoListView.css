@@ -3,3 +3,7 @@
     right: 1em;
     position: fixed;
 }
+
+.hand {
+    cursor: pointer;
+}

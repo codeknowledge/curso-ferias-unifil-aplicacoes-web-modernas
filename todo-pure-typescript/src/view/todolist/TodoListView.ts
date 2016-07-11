@@ -21,11 +21,11 @@ export class TodoListView extends CKComponent {
                 TodoModalService.instance.createService(instance);
                 instance.todosRef.forEach(todoResp => {
                     let todo : Todo = new Todo(todoResp.name, todoResp.description);
-                    todo.creationDate = todoResp.creationDate;
+                    todo.creationDate = todoResp.creationDate ? new Date(<any>todoResp.creationDate) : null;
                     todo.done = todoResp.done;
-                    todo.doneDate = todoResp.doneDate;
+                    todo.doneDate = todoResp.doneDate ? new Date(<any>todoResp.doneDate) : null;
                     todo.id = todoResp.id;
-                    todo.updateDate = todoResp.updateDate;
+                    todo.updateDate = todoResp.updateDate ? new Date(<any>todoResp.updateDate) : null;
 
                     let todoComp : TodoComponent = new TodoComponent(todo);
                     todoComp.createView().then(() => {

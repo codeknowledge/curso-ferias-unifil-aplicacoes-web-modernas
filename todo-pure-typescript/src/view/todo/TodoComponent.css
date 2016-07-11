@@ -2,14 +2,21 @@
     font-size: 1.5em;
 }
 
-.collection-item:hover {
-    background: #E0F2F1;
-    transition: ease-in-out 400ms;
+.collection-item {
+    transition: all ease-in-out 150ms;
 }
 
-.collection-item:last-child {    
-    border-bottom: 1px solid #e0e0e0
+.collection-item:hover {
+    box-shadow: 0px 1px 2px 0 rgba(34, 36, 38, 0.25);
+    transition: all ease-in-out 270ms;
+    padding: 1em;
 }
+
+.collection-item:hover .hover-visible {
+    opacity: 1 !important;
+    transition: all ease-in-out 150ms;
+}
+
 
 .finished {
     text-decoration: line-through;
@@ -17,4 +24,17 @@
 
 .todo {
     margin-bottom: 10px !important;
+}
+
+.ui.items>.item [hidden] {
+    display: none;
+}
+
+.ui.items>.item .meta * {
+    margin-top: .3em;
+    margin-bottom: .3em;
+}
+
+.hover-visible {
+    opacity: 0 !important;
 }

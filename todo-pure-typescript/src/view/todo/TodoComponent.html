@@ -1,19 +1,19 @@
-<todo-view id="{{todo.id}}">
-    <div class="ui segment todo collection-item">
-        <div class="ui compact">
-            <input class="hand" id="checkbox-{{todo.id}}" type="checkbox" ((click:toggleState)) {{checked}}/>
-            <label class="hand {{classes}}" for="checkbox-{{todo.id}}">Name: {{todo.name}}</label>
+<todo-view class="ui item" id="{{todo.id}}">
+    <div class="ui fluid container todo collection-item">
+        <div class="ui extra">
+            <label class="left floated hand {{classes}}" for="checkbox-{{todo.id}}">Name: {{todo.name}}</label>
+            <input class="ui checkbox right floated hand hover-visible" id="checkbox-{{todo.id}}" type="checkbox" ((click:toggleState)) {{checked}}/>
         </div>
-        <div class="meta" {{finished}}>
+        <div class="ui extra" {{finished}}>
             <div> <i class="green database icon"></i> Created in {{todo.creationPrettyDate}} </div>
-            <div> <i class="checkmark box icon"></i> Finished in {{todo.donePrettyDate}} </div>
+            <div> <i class="checkmark icon"></i> Finished in {{todo.donePrettyDate}} </div>
             <div class="description">
                 <p>
                     {{todo.description}}
                 </p>
             </div>
         </div>
-        <div class="extra" {{open}}>
+        <div class="ui meta" {{open}}>
             <div> <i class="green database icon"></i> Created in {{todo.creationPrettyDate}} </div>
             <div> <i class="blue info icon"></i> Edited in {{todo.updatePrettyDate}} </div>
             <div class="description">

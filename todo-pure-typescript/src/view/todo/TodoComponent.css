@@ -2,22 +2,20 @@
     font-size: 1.5em;
 }
 
-.margin-bottom {
-    margin-bottom: 5px;
-}
-
-.reset-margin {
-    margin-top: 0;
-    margin-bottom: 0;
+.collection-item {
+    transition: all ease-in-out 300ms;
 }
 
 .collection-item:hover {
-    background: #E0F2F1;
-    transition: ease-in-out 200ms;
+    box-shadow: 0px 1px 2px 0 rgba(34, 36, 38, 0.25);
+    transition: all ease-in-out 270ms;
+    padding: 1em;
 }
 
-.collection-item:last-child {    
-    border-bottom: 1px solid #e0e0e0
+.collection-item:hover .hover-visible {
+    display: inline-flex !important;
+    opacity: 1;
+    transition: all ease-in-out 150ms;
 }
 
 .finished {
@@ -26,4 +24,46 @@
 
 .todo {
     margin-bottom: 10px !important;
+}
+
+.ui.items>.item [hidden] {
+    display: none;
+}
+
+.ui.items>.item .meta * {
+    margin-top: .3em;
+    margin-bottom: .3em;
+}
+
+.hover-visible {
+    display: none !important;
+    opacity: 0;
+}
+
+.option-buttons
+{
+    display: table-caption !important;
+    opacity: 0;
+    transition: all ease-in-out 300ms;
+}
+
+.options-container:hover .option-buttons
+{
+    opacity: 1;
+    transition: all ease-in-out 300ms;
+}
+
+.scale:hover
+{
+    zoom: 102%;
+}
+
+.edit:hover
+{
+    color: #2185D0!important;
+}
+
+.trash:hover
+{
+    color: #DB2828!important;
 }

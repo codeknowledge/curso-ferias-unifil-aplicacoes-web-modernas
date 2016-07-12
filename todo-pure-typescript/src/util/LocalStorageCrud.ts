@@ -60,7 +60,7 @@ export class LocalStorageCrud extends AbstractCrud {
 
     public create(entity: Entity): Promise<void> {
         entity.id = UUID.generateUIID();
-        entity.creationDate = new Date();
+        entity.createdAt = new Date();
         return new Promise<void>((resolve, reject) => {
             this.saveToStorage(entity);
         }).catch(error => {

@@ -91,6 +91,10 @@ export class ModalComponent extends CKComponent{
         this.todo.description = event.currentTarget['value'];
     }
 
+    private setDueDate(event : Event) {
+        this.todo.dueDate = new Date(event.currentTarget['value']);
+    }
+
     private setTodo() {
         TodoModalService.instance.setTodo(this.todo);
         this.clean();

@@ -10,11 +10,11 @@ export class ValueBindingReflectionStrategy extends ReflectionStrategy {
         this.operator = new BindingOperator();
     }
 
-    public reflect(scope: any, htmlNode: CKHtmlNode): StrategyResult {
+    public reflect(scope: CKObject, htmlNode: CKHtmlNode): StrategyResult {
         let bindingPaths: Array<string> = this.operator.extractOperatorPaths(htmlNode.html);
         let bindingValues: Array<string> = new Array<string>();
         bindingPaths.forEach(valueBindingPath => {
-            let value : any = CKObject.invoke(scope, valueBindingPath); 
+            let value : any = scope.reflect(valueBindingPath); 
             bindingValues.push(value);
         });
 

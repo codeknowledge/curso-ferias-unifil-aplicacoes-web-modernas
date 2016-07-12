@@ -1,0 +1,35 @@
+footer span {
+    color: green;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+.text-small {
+    font-size: .7em;
+}
+
+.center {
+    margin: auto;
+    width: 100%;
+    padding: 10px;
+}
+
+@media screen and (max-width: 780px) {
+    .app-name {
+        display: none;
+    }
+}
+
+.ui.container.app-name
+{
+    text-align: center;
+    align-items: center;
+}

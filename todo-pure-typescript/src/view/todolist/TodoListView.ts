@@ -21,7 +21,7 @@ export class TodoListView extends CKComponent {
                 TodoModalService.instance.createService(instance);
                 instance.todosRef.forEach(todoResp => {
                     let todo : Todo = new Todo(todoResp.name, todoResp.description);
-                    todo.creationDate = todoResp.creationDate ? new Date(<any>todoResp.creationDate) : null;
+                    todo.createdAt = todoResp.createdAt ? new Date(<any>todoResp.createdAt) : null;
                     todo.done = todoResp.done;
                     todo.doneDate = todoResp.doneDate ? new Date(<any>todoResp.doneDate) : null;
                     todo.id = todoResp.id;

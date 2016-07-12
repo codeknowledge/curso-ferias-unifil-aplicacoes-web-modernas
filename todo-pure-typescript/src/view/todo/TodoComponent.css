@@ -13,10 +13,10 @@
 }
 
 .collection-item:hover .hover-visible {
+    display: inline-flex !important;
     opacity: 1 !important;
     transition: all ease-in-out 150ms;
 }
-
 
 .finished {
     text-decoration: line-through;
@@ -36,5 +36,6 @@
 }
 
 .hover-visible {
+    display: none !important;
     opacity: 0 !important;
 }

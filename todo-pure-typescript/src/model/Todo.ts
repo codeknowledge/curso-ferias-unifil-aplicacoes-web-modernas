@@ -13,7 +13,7 @@ export class Todo extends Entity {
     }
 
     public get creationPrettyDate() : string {
-        return this.prettyDate(this.creationDate);
+        return this.prettyDate(this.createdAt);
     }
 
     public get updatePrettyDate() : string {
@@ -44,7 +44,7 @@ export class Todo extends Entity {
 
     public clone() : Todo {
         let newTodo : Todo = new Todo(this.name, this.description);
-        newTodo.creationDate = this.creationDate;
+        newTodo.createdAt = this.createdAt;
         newTodo.done = this.done;
         newTodo.dueDate = this.dueDate;
         newTodo.id = this.id;

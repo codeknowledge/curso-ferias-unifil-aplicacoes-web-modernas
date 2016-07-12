@@ -1,7 +1,7 @@
 <todo-view class="ui item" id="{{todo.id}}">
     <div class="ui fluid container todo collection-item">
         <div class="ui extra">
-            <label class="hand left floated {{classes}}" for="checkbox-{{todo.id}}">Name: {{todo.name}}</label>
+            <label class="hand left floated {{classes}}" for="checkbox-{{todo.id}}">{{todo.name}}</label>
             <div class="ui checkbox hand hover-visible right floated">
                 <input class="hand" id="checkbox-{{todo.id}}" type="checkbox" ((click:toggleState)) {{checked}}/>
                 <label></label>
@@ -26,10 +26,10 @@
                     {{todo.description}}
                 </p>
             </div>
-            <button class="ui green mini icon button" ((click:edit))>
+            <button class="hover-visible ui green mini icon button" ((click:edit))>
                 <i class="edit icon"></i>
             </button>
-            <button class="ui red mini icon button" ((click:remove))>
+            <button class="hover-visible ui red mini icon button" ((click:remove))>
                 <i class="trash icon"></i>
             </button>
         </div>

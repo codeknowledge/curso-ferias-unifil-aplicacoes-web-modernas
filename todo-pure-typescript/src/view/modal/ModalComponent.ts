@@ -10,6 +10,16 @@ export class ModalComponent extends CKComponent{
     private _modalId : string = "todoRegisterModal";
     private editing : boolean = false;
     private removing : boolean = false;
+
+    private get reflectColor() : string {
+        return this.removing ? "red" : 
+            this.creating ? "green" : "blue";
+    }
+
+    private get reflectIcon() : string {
+        return this.editing ? "check" : "plus";
+    }
+
     private get creating() : boolean {
         return !this.editing && !this.removing;
     }
@@ -44,6 +54,7 @@ export class ModalComponent extends CKComponent{
     public startEditing(todo ?: Todo) : void {
         if(todo) {
             this.editing = true;
+            this.removing = false;
         }
 
         this.todo = todo ? todo : new Todo("", "");
@@ -66,6 +77,7 @@ export class ModalComponent extends CKComponent{
     public startRemoving(todo : Todo) {
         this.todo = todo;
         this.removing = true;
+        this.editing = false;
 
         let instance : ModalComponent = this;
 

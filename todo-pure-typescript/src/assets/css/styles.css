@@ -1,11 +1,21 @@
 footer span {
-    color: green;
+    color: yellow;
+}
+
+footer
+{
+    color: ghostwhite;
 }
 
 body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    font-family: cursive !important;
+}
+
+input {
+    font-family: cursive !important;
 }
 
 main {
@@ -32,4 +42,41 @@ main {
 {
     text-align: center;
     align-items: center;
+    color: ghostwhite;
+    font-family: cursive !important;
+}
+
+.wide-background
+{
+    border-radius: 0 !important;
+}
+
+.orange.wide-background
+{
+    background: orangered !important;    
+    color: ghostwhite !important;
+}
+
+.green.wide-background
+{
+    background: seagreen !important;
+    color: ghostwhite !important;
+}
+
+.red.wide-background
+{
+    background: #DB2828 !important;
+    color: ghostwhite !important;
+}
+
+.blue.wide-background
+{
+    background: mediumblue !important;
+    color: ghostwhite !important;
+}
+
+.purple.wide-background
+{
+    background: purple !important;
+    color: ghostwhite !important;
 }

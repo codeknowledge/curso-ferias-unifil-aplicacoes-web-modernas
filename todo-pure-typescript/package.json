@@ -5,6 +5,7 @@
   "main": "main.ts",
   "dependencies": {
     "es6-shim": "^0.35.1",
+    "fs": "0.0.2",
     "jquery": "^3.0.0",
     "semantic-ui": "^2.1.8",
     "systemjs": "^0.19.31",

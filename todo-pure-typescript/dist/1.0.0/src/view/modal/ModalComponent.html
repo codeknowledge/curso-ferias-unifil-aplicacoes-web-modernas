@@ -1,4 +1,7 @@
+<link rel="stylesheet" href="1.0.0/src/view/modal/ModalComponent.css">
+
 <div class="ui fullscreen modal" id="{{modalId}}">
+    <i class="ui white close icon"></i>
     <div class="header ui {{reflectColor}} wide-background">
         <div class="ui white" {{whenCreating}}> 
             Add new Task
@@ -47,11 +50,11 @@
     <div class="actions">
         <div class="ui padded fluid wide container">
             <div {{whenNotRemoving}}>
-                <div class="ui left floated deny"><i class="ui grey hand-selection big reply icon"></i></div>
+                <div class="ui left floated deny" ((click:clean))><i class="ui grey hand-selection big reply icon"></i></div>
                 <div class="ui right floated approve" ((click:setTodo))><i class="ui hand-selection {{reflectColor}} big {{reflectIcon}} icon"></i></div>
             </div>
             <div {{whenRemoving}}>
-                <div class="ui left floated deny"><i class="ui grey hand-selection big reply icon"></i></div>                
+                <div class="ui left floated deny" ((click:clean))><i class="ui grey hand-selection big reply icon"></i></div>                
                 <div class="ui right floated approve" ((click:remove))><i class="ui hand-selection red big trash icon"></i></div>
             </div>
         </div>

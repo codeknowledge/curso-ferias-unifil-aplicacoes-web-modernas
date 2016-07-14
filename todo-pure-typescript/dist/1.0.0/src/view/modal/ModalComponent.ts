@@ -48,7 +48,7 @@ export class ModalComponent extends CKComponent{
     }
 
     constructor() {
-        super("src/view/modal/ModalComponent.html", "#modalComponent");
+        super("1.0.0/src/view/modal/ModalComponent.html", "#modalComponent");
     }
 
     public startEditing(todo ?: Todo) : void {
@@ -58,29 +58,37 @@ export class ModalComponent extends CKComponent{
         }
 
         this.todo = todo ? todo : new Todo("", "");
-        this.configureModal();
+        let instance : ModalComponent = this;
+
+        if(this.htmlModel) {
+            instance.applyScopeChange();
+            jQuery("#" + this.modalId).modal("show");
+        } else {
+            this.createView().then(() => {
+                jQuery("#" + this.modalId).modal({
+                    onVisible : () => {
+                        instance.applyScopeChange();
+                    }
+                }).modal("show");
+            });
+        }
     }
 
     public startRemoving(todo : Todo) {
         this.todo = todo;
         this.removing = true;
         this.editing = false;
-        this.configureModal();
-    }
 
-    private configureModal() : void {
         let instance : ModalComponent = this;
 
         if(this.htmlModel) {
-            jQuery("#" + this.modalId).modal("show");
             instance.applyScopeChange();
+            jQuery("#" + this.modalId).modal("show");
         } else {
             this.createView().then(() => {
                 jQuery("#" + this.modalId).modal({
                     onVisible : () => {
                         instance.applyScopeChange();
-                    }, onHidden : () => {
-                        instance.clean();
                     }
                 }).modal("show");
             });
@@ -101,18 +109,16 @@ export class ModalComponent extends CKComponent{
 
     private setTodo() {
         TodoModalService.instance.setTodo(this.todo);
+        this.clean();
     }
 
     private clean() {
         this.editing = false;
         this.removing = false;
-        this.destroy();
-        this.htmlModel = null;
-        jQuery(".modal").remove();
-        console.log("Clean executed");
     }
 
     private remove() {
         TodoModalService.instance.setTodo(this.todo);
+        this.clean();
     }
 }

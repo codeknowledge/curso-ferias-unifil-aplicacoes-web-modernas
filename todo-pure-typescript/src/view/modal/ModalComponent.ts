@@ -47,6 +47,10 @@ export class ModalComponent extends CKComponent{
         return this.testHidden(!this.removing);
     }
 
+    private get todoFinished() : string {
+        return this.todo.open ? "hidden" : "";
+    }
+
     constructor() {
         super("src/view/modal/ModalComponent.html", "#modalComponent");
     }
@@ -96,7 +100,7 @@ export class ModalComponent extends CKComponent{
     }
 
     private setDueDate(event : Event) {
-        this.todo.dueDate = new Date(event.currentTarget['value']);
+        this.todo.dueDate = event.currentTarget['value'] ? new Date(event.currentTarget['value']) : null;
     }
 
     private setTodo() {

@@ -38,6 +38,7 @@
 .hover-visible {
     display: none !important;
     opacity: 0;
+    margin-right: -2px;
 }
 
 .option-buttons
@@ -66,4 +67,13 @@
 .trash:hover
 {
     color: #DB2828!important;
+}
+
+.ui.extra .option-buttons
+{
+    margin-bottom: 10px !important;
+}
+
+.option-group {
+    margin-right: -6px !important;
 }

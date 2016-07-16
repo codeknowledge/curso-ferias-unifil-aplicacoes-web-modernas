@@ -25,7 +25,7 @@ export class Todo extends Entity {
     }
 
     private prettyDate(date : Date) {
-        return date ? date.toLocaleDateString() + " at " + date.toUTCString() : "";
+        return date ? date.toUTCString() : "";
     }
     
     private get formattedDueDate() : string {

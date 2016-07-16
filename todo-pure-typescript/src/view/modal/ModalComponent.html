@@ -34,8 +34,16 @@
                     <label>{{todo.name}}</label>
                 </div>
                 <div class="ui basic segment">
+                    <label class="ui label">Created in</label>
+                    <label>{{todo.creationPrettyDate}}</label>
+                </div>
+                <div class="ui basic segment">
                     <label class="ui label">Due Date</label>
                     <label>{{todo.duePrettyDate}}</label>
+                </div>
+                <div {{todoFinished}} class="ui basic segment">
+                    <label class="ui label">Finished in</label>
+                    <label>{{todo.donePrettyDate}}</label>
                 </div>
                 <div class="ui basic segment">
                     <label class="ui label">Task Description</label>

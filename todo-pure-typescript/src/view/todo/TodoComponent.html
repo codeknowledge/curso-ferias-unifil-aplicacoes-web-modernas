@@ -8,19 +8,9 @@
             </div>
         </div>
         <div class="ui extra" {{finished}}>
-            <div> <i class="green database icon"></i> Created in {{todo.creationPrettyDate}} </div>
-            <div> <i class="checkmark icon"></i> Finished in {{todo.donePrettyDate}} </div>
-            <div> <i class="clock icon"></i> Due date in {{todo.duePrettyDate}} </div>
-            <div class="description">
-                <p>
-                    {{todo.description}}
-                </p>
-            </div>
-        </div>
-        <div class="ui meta" {{open}}>
             <div class="ui left floated">
                 <div> <i class="green database icon"></i> Created in {{todo.creationPrettyDate}} </div>
-                <div> <i class="blue info icon"></i> Edited in {{todo.updatePrettyDate}} </div>
+                <div> <i class="checkmark icon"></i> Finished in {{todo.donePrettyDate}} </div>
                 <div> <i class="clock icon"></i> Due date in {{todo.duePrettyDate}} </div>
                 <div class="description">
                     <p>
@@ -29,7 +19,27 @@
                 </div>
             </div>
             <div class="ui right floated options-container">
-                <div class="ui right aligned">
+                <div class="ui option-group aligned">
+                    <div class="option-buttons">
+                        <i class="ui scale hand large trash icon" ((click:remove))></i>
+                    </div>
+                    <i class="hover-visible purple big options icon"></i>
+                </div>
+            </div>
+        </div>
+        <div class="ui meta" {{open}}>
+            <div class="ui left floated">
+                <div> <i class="green database icon"></i> Created in {{todo.creationPrettyDate}} </div>
+                <div {{edited}}> <i class="blue info icon"></i> Edited in {{todo.updatePrettyDate}} </div>
+                <div {{theresDueDate}}> <i class="clock icon"></i> Due date in {{todo.duePrettyDate}} </div>
+                <div class="description">
+                    <p>
+                        {{todo.description}}
+                    </p>
+                </div>
+            </div>
+            <div class="ui right floated options-container">
+                <div class="ui option-group aligned">
                     <div class="option-buttons">
                         <i class="ui scale hand large edit icon" ((click:edit))></i>
                         <i class="ui scale hand large trash icon" ((click:remove))></i>

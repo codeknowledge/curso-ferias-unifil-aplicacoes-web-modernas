@@ -70,7 +70,15 @@ export class TodoComponent extends CKComponent{
         return this.todo.done ? "hidden" : "";
     }
 
+    private get edited() : string {
+        return this.todo.updateDate ? "" : "hidden";
+    }
+
     private get checked() : string {
         return this.todo.done ? "checked" : "";
+    }
+
+    private get theresDueDate() : string {
+        return this.todo.dueDate ? "" : "hidden";
     }
 }

@@ -11,6 +11,8 @@ import { LocalStorageCrud } from '../../util/LocalStorageCrud';
 export class TodoListView extends CKComponent {
 
 	private todosRef: Array<Todo>;
+    private openTodos : Array<Todo>;
+    private closedTodos : Array<Todo>;
 	private todoComps: Array<TodoComponent> = new Array<TodoComponent>();
 
 	constructor() {
@@ -61,7 +63,7 @@ export class TodoListView extends CKComponent {
             let todoComp : TodoComponent = new TodoComponent(todo);
             todoComp.createView().then(() => {
                 instance.todoComps.push(todoComp);
-                LocalStorageCrud.instance.save(todo);
+                LocalStorageCrud.instance.create(todo);
             });
         }, () => {
             console.info("Declined");
@@ -70,7 +72,14 @@ export class TodoListView extends CKComponent {
     }
 
 	private onTodoStatusChange(todo: Todo) {
-		LocalStorageCrud.instance.save(todo).catch((error) => {
+        let instance : TodoListView = this;
+		LocalStorageCrud.instance.save(todo)
+        .then(() =>
+        {
+            instance.applyScopeChange();
+        })
+        .catch((error) =>
+        {
 			console.error(error);
 		});
 	}

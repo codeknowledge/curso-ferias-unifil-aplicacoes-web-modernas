@@ -8,6 +8,18 @@ export class Todo extends Entity {
     public doneDate: Date;
     public dueDate: Date;
 
+    /**
+     *
+     */
+    constructor(name: string, description: string, ownerId : string) {
+        super();
+        this.name = name;
+        this.description = description;
+        this.done = false;
+        this.id = UUID.s4();
+        this.ownerId = ownerId;
+    }
+
     public get donePrettyDate(): string {
         return this.prettyDate(this.doneDate);
     }
@@ -95,16 +107,5 @@ export class Todo extends Entity {
         newTodo.doneDate = this.doneDate;
         newTodo.updateDate = this.updateDate;
         return newTodo;
-    }
-
-    /**
-     *
-     */
-    constructor(name: string, description: string) {
-        super();
-        this.name = name;
-        this.description = description;
-        this.done = false;
-        this.id = UUID.s4();
     }
 }

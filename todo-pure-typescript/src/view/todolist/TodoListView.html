@@ -1,19 +1,35 @@
-<link rel="stylesheet" href="src/view/todolist/TodoListView.css">
-<link rel="stylesheet" href="src/view/todo/TodoComponent.css">
-<link rel="stylesheet" href="src/view/modal/ModalComponent.css">
+<task-list-view>
 
-<div class="ui divided items" id="todo-list">
-    <!-- The list goes here -->
-</div>
+    <link rel="stylesheet" href="src/view/todolist/TodoListView.css">
+    <link rel="stylesheet" href="src/view/todo/TodoComponent.css">
+    <link rel="stylesheet" href="src/view/modal/ModalComponent.css">
 
-<!-- MODAIS --->
+    <div class="ui purple wide-background menu">
+        <div class="item">
+            <h3 class="ui white text">CKTodo</h3>
+        </div>
+        <div class="ui container wide app-name">
+            <h2 class="app-name center aligned"><i class="dark gray tasks icon"></i> {{project.name}} </h2>
+        </div>
+    </div>
+    <div class="ui container">
+        <div class="ui divided items" id="task-list">
+            <!-- The list goes here -->
+        </div>
+    </div>
+    <footer class="ui footer">
+        <div class="ui blue wide-background segment center aligned"><span>Author:</span> Reginaldo Camargo Ribeiro. <span>Version:</span> 0-alpha.7</div>
+    </footer>
 
-<button class="fixed-action-btn circular ui green icon button huge" ((click:addTodo))>
-    <i class="plus icon"></i>
-</button>
+
+    <button class="fixed-action-btn circular ui green icon button huge" ((click:addTodo))>
+        <i class="plus icon"></i>
+    </button>
 
 
-<!-- Modal -->
-<div id="modalComponent">
+    <!-- Modal -->
+    <div id="modalComponent">
 
-</div>
+    </div>
+
+</task-list-view>

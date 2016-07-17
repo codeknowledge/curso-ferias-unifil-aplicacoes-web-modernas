@@ -7,6 +7,7 @@ import { LocalStorageCrud } from '../../util/LocalStorageCrud';
 import { ProjectComponent } from '../../view/project/ProjectComponent';
 //service
 import { ProjectModalService } from '../../service/ProjectModalService';
+import { NavigationService } from '../../service/NavigationService';
 
 export class DashboardView extends CKComponent
 {
@@ -18,7 +19,7 @@ export class DashboardView extends CKComponent
         let instance : DashboardView = this;
         instance.projectComps = new Array<ProjectComponent>();
         instance.projectsRef = new Array<Project>();
-        instance.projectsRef.push(new Project("Default", "This is the default project"));
+        NavigationService.instance.config(this);
 
         this.initView().then(() => {
             ProjectModalService.instance.createService(instance);
@@ -60,7 +61,13 @@ export class DashboardView extends CKComponent
     initView(): Promise<any> {
 		let instance: DashboardView = this;
         return new Promise<any>((resolve, reject) => {
-            resolve();
+            LocalStorageCrud.instance.retrieveList().then((projects: Array<Project>) => {
+                instance.projectsRef = projects;
+                resolve();
+            }).catch((error) => {
+                reject(error);
+                console.error(error);
+            });
         });
 	}
 
@@ -68,9 +75,9 @@ export class DashboardView extends CKComponent
     {
         let instance : DashboardView = this;
         ProjectModalService.instance.openModal((project : Project) => {
-            let todoComp : ProjectComponent = new ProjectComponent(project);
-            todoComp.createView().then(() => {
-                instance.projectComps.push(todoComp);
+            let projectComp : ProjectComponent = new ProjectComponent(project);
+            projectComp.createView().then(() => {
+                instance.projectComps.push(projectComp);
                 LocalStorageCrud.instance.create(project);
             });
         });

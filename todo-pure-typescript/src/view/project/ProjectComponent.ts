@@ -1,10 +1,14 @@
 //Model
 import { Project } from '../../model/Project';
+import { Iteration } from '../../model/Iteration';
 //api
 import { CKComponent } from '../../api/core/CKComponent';
 import { LocalStorageCrud } from '../../util/LocalStorageCrud';
 //service
 import { ProjectModalService } from '../../service/ProjectModalService';
+import { NavigationService } from '../../service/NavigationService';
+// view
+import { TodoListView } from '../todolist/TodoListView';
 
 //Util
 export class ProjectComponent extends CKComponent
@@ -21,6 +25,7 @@ export class ProjectComponent extends CKComponent
     constructor(private project : Project)
     {
         super("src/view/project/ProjectComponent.html", "#project-list");
+        this.project.iterations = [new Iteration(this.project.id)];
     }
     
     private toggleState(): void {
@@ -85,5 +90,10 @@ export class ProjectComponent extends CKComponent
 
     private get theresDueDate() : string {
         return this.project.dueDate ? "" : "hidden";
+    }
+
+    private navigateToTaskList()
+    {
+        NavigationService.instance.navigate(TodoListView, {key: "projectId", value: this.project.id});
     }
 }

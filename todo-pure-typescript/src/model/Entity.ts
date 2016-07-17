@@ -3,6 +3,7 @@ import { CKObject } from '../api/core/CKObject';
 export class Entity extends CKObject
 {
     public id : string;
+    public ownerId : string;
     public createdAt: Date;
     public updateDate: Date;
 

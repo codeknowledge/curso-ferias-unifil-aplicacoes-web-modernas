@@ -1,5 +1,7 @@
 //Model
 import { Todo } from '../../model/Todo';
+import { Project } from '../../model/Project';
+import { Iteration } from '../../model/Iteration';
 import { TodoComponent } from '../../view/todo/TodoComponent';
 //api
 import { CKComponent } from '../../api/core/CKComponent';
@@ -7,21 +9,22 @@ import { CKObject } from '../../api/core/CKObject';
 //service
 import { TodoModalService } from '../../service/TodoModalService';
 import { TodoUpdaterService } from '../../service/TodoUpdaterService';
+import { NavigationService } from '../../service/NavigationService';
 
 
 import { LocalStorageCrud } from '../../util/LocalStorageCrud';
 export class TodoListView extends CKComponent {
-
-	private todosRef: Array<Todo>;
+    private project : Project;
+	private todosRef: Array<Todo> = [];
     private openTodos : Array<Todo>;
     private closedTodos : Array<Todo>;
 	private todoComps: Array<TodoComponent> = new Array<TodoComponent>();
     private timer : number;
 
 	constructor() {
-		super("src/view/todolist/TodoListView.html", "#mainContent");
+		super("src/view/todolist/TodoListView.html", "#dashboard");
 		let instance: TodoListView = this;
-        TodoUpdaterService.instance.register(this, this.applyScopeChange, 15000);
+        TodoUpdaterService.instance.register(this, this.applyScopeChange);
         
 		this.initView().then(() => {
             this.createView().then(() => {
@@ -41,13 +44,14 @@ export class TodoListView extends CKComponent {
             let promises : Array<Promise<TodoComponent>> = new Array<Promise<TodoComponent>>();
 
             instance.todosRef.forEach(todoResp => {
-                let todo : Todo = new Todo(todoResp.name, todoResp.description);
+                let todo : Todo = new Todo(todoResp.name, todoResp.description, todoResp.ownerId);
                 todo.createdAt = todoResp.createdAt ? new Date(<any>todoResp.createdAt) : null;
                 todo.done = todoResp.done;
                 todo.doneDate = todoResp.doneDate ? new Date(<any>todoResp.doneDate) : null;
                 todo.id = todoResp.id;
                 todo.updateDate = todoResp.updateDate ? new Date(<any>todoResp.updateDate) : null;
                 todo.dueDate = todoResp.dueDate ? new Date(<any>todoResp.dueDate) : null;
+                instance.project.iterations[0].todoList.push(todo);
 
                 let todoComp : TodoComponent = new TodoComponent(todo);
                 promises.push(todoComp.createView());
@@ -65,13 +69,20 @@ export class TodoListView extends CKComponent {
 	initView(): Promise<any> {
 		let instance: TodoListView = this;
         return new Promise<any>((resolve, reject) => {
-            LocalStorageCrud.instance.retrieveList().then((todos: Array<Todo>) => {
-                instance.todosRef = todos;
-                resolve();
-            }).catch((error) => {
-                reject(error);
-                console.error(error);
-            });
+            let projectId = NavigationService.instance.params["projectId"];
+            LocalStorageCrud.instance.retrieve(projectId).then((result : Project) => {
+                instance.project = new Project(result.name, result.description);
+                instance.project.id = result.id;
+                instance.project.createdAt = result.createdAt;
+                instance.project.doneDate = result.doneDate;
+                instance.project.dueDate = result.dueDate;
+                instance.project.iterations = [new Iteration(result.id)];
+                instance.project.tags = result.tags;
+                instance.project.updateDate = result.updateDate;
+
+                instance.todosRef = result.iterations ? result.iterations[0].todoList || [] : [];
+            })
+            resolve();
         });
 	}
 
@@ -86,7 +97,8 @@ export class TodoListView extends CKComponent {
             let todoComp : TodoComponent = new TodoComponent(todo);
             todoComp.createView().then(() => {
                 instance.todoComps.push(todoComp);
-                LocalStorageCrud.instance.create(todo);
+                instance.project.iterations[0].todoList.push(todo);
+                LocalStorageCrud.instance.save(instance.project);
             });
         });
     }

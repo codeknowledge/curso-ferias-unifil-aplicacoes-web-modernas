@@ -16,7 +16,7 @@ export class TodoUpdaterService
         return TodoUpdaterService._instance;
     }
 
-    public register(owner : CKObject, updateFunction : () => void, loopTime : number = 10000) : void
+    public register(owner : CKObject, updateFunction : () => void, loopTime : number = 60000) : void
     {
         this.owner = owner;
         this.updateFunction = updateFunction;

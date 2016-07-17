@@ -19,7 +19,7 @@ export class TodoComponent extends CKComponent{
     }
 
     constructor(private todo : Todo) {
-        super("src/view/todo/TodoComponent.html", "#todo-list");
+        super("src/view/todo/TodoComponent.html", "#task-list");
     }
     
     private toggleState(): void {

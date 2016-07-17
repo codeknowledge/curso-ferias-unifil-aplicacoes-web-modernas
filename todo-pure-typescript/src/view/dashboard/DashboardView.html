@@ -1,16 +1,32 @@
-<link rel="stylesheet" href="src/view/dashboard/DashboardView.css">
-<link rel="stylesheet" href="src/view/project/ProjectComponent.css">
-<link rel="stylesheet" href="src/view/projectmodal/ProjectModalComponent.css">
+<dashboard-view>
+    <link rel="stylesheet" href="src/view/dashboard/DashboardView.css">
+    <link rel="stylesheet" href="src/view/project/ProjectComponent.css">
+    <link rel="stylesheet" href="src/view/projectmodal/ProjectModalComponent.css">
 
-<div class="ui divided items" id="project-list">
-    <!-- The list goes here -->
-</div>
+    <div class="ui purple wide-background menu">
+        <div class="item">
+            <h3 class="ui white text">CKTodo</h3>
+        </div>
+        <div class="ui container wide app-name">
+            <h2 class="app-name center aligned"><i class="dark gray tasks icon"></i> Dashboard </h2>
+        </div>
+    </div>
+    <div class="ui container">
+        <div class="ui divided items" id="project-list">
+            <!-- The list goes here -->
+        </div>
+    </div>
+    <footer class="ui footer">
+        <div class="ui blue wide-background segment center aligned"><span>Author:</span> Reginaldo Camargo Ribeiro. <span>Version:</span> 0-alpha.7</div>
+    </footer>
 
-<button class="fixed-action-btn circular ui green icon button huge" ((click:addProject))>
-    <i class="plus icon"></i>
-</button>
 
-<!-- Modal -->
-<div id="projectModalComponent">
+    <button class="fixed-action-btn circular ui green icon button huge" ((click:addProject))>
+        <i class="plus icon"></i>
+    </button>
 
-</div>
+    <!-- Modal -->
+    <div id="projectModalComponent">
+
+    </div>
+</dashboard-view>

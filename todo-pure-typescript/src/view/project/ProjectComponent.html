@@ -1,7 +1,7 @@
 <project-view class="ui item" id="{{project.id}}">
     <div class="ui fluid container project collection-item">
         <div class="ui extra">
-            <label class="hand left floated {{classes}}" for="checkbox-{{project.id}}">{{project.name}}</label>
+            <label class="hand left floated {{classes}}" for="checkbox-{{project.id}}" ((click:navigateToTaskList))>{{project.name}}</label>
         </div>
         <div class="ui extra" {{finished}}>
             <div class="ui left floated">

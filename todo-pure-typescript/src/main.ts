@@ -11,7 +11,7 @@ import { Dictionary } from './api/core/datastructure/generic/Dictionary';
 
 (() => {
     new TodoListView();
-    let dictionary : Dictionary<string, string> = new Dictionary<string, string>();
+    /*let dictionary : Dictionary<string, string> = new Dictionary<string, string>();
     dictionary.add("one", "one value");
     dictionary.add("second", "second value");
     dictionary.add("third", "third value");
@@ -27,5 +27,5 @@ import { Dictionary } from './api/core/datastructure/generic/Dictionary';
     console.log(dictionary.reflect("_keys"));
     dictionary.remove("third");
     dictionary.set("second", "new second value");
-    console.log("to string: " + dictionary.toString());
+    console.log("to string: " + dictionary.toString());*/
 })();

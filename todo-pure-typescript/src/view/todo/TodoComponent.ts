@@ -5,6 +5,7 @@ import { CKComponent } from '../../api/core/CKComponent';
 import { LocalStorageCrud } from '../../util/LocalStorageCrud';
 //service
 import { TodoModalService } from '../../service/TodoModalService';
+import { TodoUpdaterService } from '../../service/TodoUpdaterService';
 
 //Util
 export class TodoComponent extends CKComponent{
@@ -24,7 +25,6 @@ export class TodoComponent extends CKComponent{
     private toggleState(): void {
         let instance : TodoComponent = this;
         this.toggleDoneDate();
-        console.log(this.todo.done ? "checked" : "unchecked");
         LocalStorageCrud.instance.save(this.todo).then(() => {            
             instance.applyScopeChange();
         });
@@ -41,10 +41,12 @@ export class TodoComponent extends CKComponent{
 
     private edit() : void {
         let instance : TodoComponent = this;
+        TodoUpdaterService.instance.stopTimer();
         TodoModalService.instance.openModal((todo : Todo) => {
             instance.todo = todo;
             LocalStorageCrud.instance.save(instance.todo).then(() => {                
                 instance.applyScopeChange();
+                TodoUpdaterService.instance.startTimer();
             });
         }, () => {
 
@@ -53,6 +55,7 @@ export class TodoComponent extends CKComponent{
 
     private remove() : void {
         let instance : TodoComponent = this;
+        TodoUpdaterService.instance.stopTimer();
         let clonedTodo : Todo = this.todo.clone();
         if(clonedTodo.dueDate)
             clonedTodo.dueDate = new Date(clonedTodo.dueDate.toUTCString());
@@ -60,6 +63,7 @@ export class TodoComponent extends CKComponent{
         TodoModalService.instance.openModal((todo : Todo) => {
             LocalStorageCrud.instance.delete(instance.todo).then(() => {
                 instance.destroy();
+                TodoUpdaterService.instance.startTimer();
             });
         }, () => {
 

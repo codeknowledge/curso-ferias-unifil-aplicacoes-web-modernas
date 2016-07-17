@@ -1,5 +1,5 @@
 import { isPresent, isBlank } from '../common/validators';
-import { cast, invoke, getClass, getPrototype, instanceOf } from './object';
+import { cast, reflect, getClass, getPrototype, instanceOf } from './object';
 
 export class CKObject
 {
@@ -24,7 +24,12 @@ export class CKObject
 
     public reflect(path : string) : any
     {
-        return invoke(this, path);
+        return reflect(this, path);
+    }
+
+    public invoke(path : string, ...args: any[]) : any
+    {
+        return reflect(this, path).apply(this, [args]);
     }
 
     public get hashCode() : string

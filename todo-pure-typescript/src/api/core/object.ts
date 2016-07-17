@@ -5,7 +5,7 @@ module object
         return <T> value;
     }
 
-    export function invoke(obj: any, path: string) : any
+    export function reflect(obj: any, path: string) : any
     {
         let fields: Array<string> = path.split(".");
         let context: any = obj;
@@ -45,7 +45,7 @@ module object
 }
 
 export var cast = object.cast;
-export var invoke = object.invoke;
+export var reflect = object.reflect;
 export var getClass = object.getClass;
 export var getPrototype = object.getPrototype;
 export var instanceOf = object.instanceOf;

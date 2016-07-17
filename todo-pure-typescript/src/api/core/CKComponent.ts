@@ -25,7 +25,7 @@ export class CKComponent extends CKObject
                 jQuery.get(instance.htmlRef, function (html)
                 {
                     instance.htmlModel = new CKHtmlModel(instance.anchor, attr, html, instance);
-                    resolve();
+                    resolve(instance);
                 });
             }
             catch(error)

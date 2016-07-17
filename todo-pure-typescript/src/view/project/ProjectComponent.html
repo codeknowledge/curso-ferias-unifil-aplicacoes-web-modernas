@@ -1,0 +1,66 @@
+<project-view class="ui item" id="{{project.id}}">
+    <div class="ui fluid container project collection-item">
+        <div class="ui extra">
+            <label class="hand left floated {{classes}}" for="checkbox-{{project.id}}">{{project.name}}</label>
+        </div>
+        <div class="ui extra" {{finished}}>
+            <div class="ui left floated">
+                <div>
+                    <i class="green database icon"></i> Created in {{project.creationPrettyDate}}
+                    <span class="ui tiny label">{{project.creationInsightedDate}}</span>
+                </div>
+                <div>
+                    <i class="checkmark icon"></i> Finished in {{project.donePrettyDate}}
+                    <span class="ui tiny label">{{project.doneInsightedDate}}</span>
+                </div>
+                <div {{theresDueDate}}>
+                    <i class="clock icon"></i> Due date in {{project.duePrettyDate}}
+                    <span class="ui tiny label">{{project.dueInsightedDate}}</span>
+                </div>
+                <div class="description">
+                    <p>
+                        {{project.description}}
+                    </p>
+                </div>
+            </div>
+            <div class="ui right floated options-container">
+                <div class="ui option-group aligned">
+                    <div class="option-buttons">
+                        <i class="ui scale hand large trash icon" ((click:remove))></i>
+                    </div>
+                    <i class="hover-visible purple big options icon"></i>
+                </div>
+            </div>
+        </div>
+        <div class="ui meta" {{open}}>
+            <div class="ui left floated">
+                <div>
+                    <i class="green database icon"></i> Created in {{project.creationPrettyDate}}
+                    <span class="ui tiny label">{{project.creationInsightedDate}}</span>
+                </div>
+                <div {{edited}}>
+                    <i class="blue info icon"></i> Edited in {{project.updatePrettyDate}}
+                    <span class="ui tiny label">{{project.updateInsightedDate}}</span>
+                </div>
+                <div {{theresDueDate}}>
+                    <i class="clock icon"></i> Due date in {{project.duePrettyDate}}
+                    <span class="ui tiny label">{{project.dueInsightedDate}}</span>
+                </div>
+                <div class="description">
+                    <p>
+                        {{project.description}}
+                    </p>
+                </div>
+            </div>
+            <div class="ui right floated options-container">
+                <div class="ui option-group aligned">
+                    <div class="option-buttons">
+                        <i class="ui scale hand large edit icon" ((click:edit))></i>
+                        <i class="ui scale hand large trash icon" ((click:remove))></i>
+                    </div>
+                    <i class="hover-visible purple big options icon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</project-view>

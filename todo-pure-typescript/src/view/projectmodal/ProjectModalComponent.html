@@ -1,0 +1,67 @@
+<div class="ui fullscreen modal" id="{{modalId}}">
+    <div class="header ui {{reflectColor}} wide-background">
+        <div class="ui white" {{whenCreating}}> 
+            Add new Project
+        </div>
+        <div class="ui white" {{whenEditing}}> 
+            Editting Project
+        </div>
+        <div class="ui white" {{whenRemoving}}>
+            Are you sure you want to remove this project?
+        </div>
+    </div>
+    <div class="content">
+        <div {{whenNotRemoving}}>
+            <form class="ui form">
+                <div class="field">
+                    <label>Project Name</label>
+                    <input type="text" ((change:setProjectName)) value="{{project.name}}" maxlength="50" minlength="5" placeholder="Go to supermarket...">
+                </div>
+                <div class="field">
+                    <label>Due Date</label>
+                    <input type="date" ((change:setDueDate)) value="{{project.formattedDueDate}}">
+                </div>
+                <div class="field">
+                    <label>Project Description</label>
+                    <textarea rows="2" ((change:setProjectDescription)) placeholder="Buy 2 eggs, milk, floor, etc.">{{project.description}}</textarea>
+                </div>
+            </form>
+        </div>
+        <div {{whenRemoving}}>
+            <div class="ui aligned center container">
+                <div class="ui basic segment">
+                    <label class="ui label">Project Name</label>
+                    <label>{{project.name}}</label>
+                </div>
+                <div class="ui basic segment">
+                    <label class="ui label">Created in</label>
+                    <label>{{project.creationPrettyDate}}</label>
+                </div>
+                <div class="ui basic segment">
+                    <label class="ui label">Due Date</label>
+                    <label>{{project.duePrettyDate}}</label>
+                </div>
+                <div {{projectFinished}} class="ui basic segment">
+                    <label class="ui label">Finished in</label>
+                    <label>{{project.donePrettyDate}}</label>
+                </div>
+                <div class="ui basic segment">
+                    <label class="ui label">Project Description</label>
+                    <label>{{project.description}}</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui padded fluid wide container">
+            <div {{whenNotRemoving}}>
+                <div class="ui left floated deny"><i class="ui grey hand-selection big reply icon"></i></div>
+                <div class="ui right floated approve" ((click:setProject))><i class="ui hand-selection {{reflectColor}} big {{reflectIcon}} icon"></i></div>
+            </div>
+            <div {{whenRemoving}}>
+                <div class="ui left floated deny"><i class="ui grey hand-selection big reply icon"></i></div>                
+                <div class="ui right floated approve" ((click:remove))><i class="ui hand-selection red big trash icon"></i></div>
+            </div>
+        </div>
+    </div>
+</div>

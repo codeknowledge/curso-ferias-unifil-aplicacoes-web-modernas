@@ -6,11 +6,37 @@ import { AbstractController } from './util/AbstractController';
 import { LocalStorageCrud } from './util/LocalStorageCrud';
 import { Todo } from './model/Todo';
 import { TodoListView } from './view/todolist/TodoListView';
+import { DashboardView } from './view/dashboard/DashboardView';
 
 import { Dictionary } from './api/core/datastructure/generic/Dictionary';
 
 (() => {
-    new TodoListView();
+    moment.locale('en', {
+        relativeTime : {
+            future: "in %s",
+            past:   "%s ago",
+            s:  "seconds",
+            m:  "a minute",
+            mm: "%d minutes",
+            h:  "an hour",
+            hh: "%d hours",
+            d:  "a day",
+            dd: "%d days",
+            M:  "a month",
+            MM: "%d months",
+            y:  "a year",
+            yy: "%d years"
+        }
+    });
+
+    moment.fn.fromDate = function (from : Date) {
+        if (Math.abs(this.diff(from)) < 10000) { // 1000 milliseconds
+            return 'just now';
+        }
+        return this.from(from);
+    }
+
+    new DashboardView();
     /*let dictionary : Dictionary<string, string> = new Dictionary<string, string>();
     dictionary.add("one", "one value");
     dictionary.add("second", "second value");

@@ -1,0 +1,40 @@
+.ui.white
+{
+    color: ghostwhite !important;
+}
+
+.padded
+{
+    padding-bottom: 2em;
+}
+
+.right.floated
+{
+    float: right;
+}
+
+.left.floated
+{
+    float: left;
+}
+
+.hand-selection:hover
+{
+    cursor: pointer;
+    opacity: 0.85;
+}
+
+i.blue.icon
+{
+    color: mediumblue !important;
+}
+
+i.purple.icon
+{
+    color: purple !important;
+}
+
+i.green.icon
+{
+    color: seagreen !important;
+}

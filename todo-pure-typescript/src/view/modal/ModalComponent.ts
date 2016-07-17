@@ -104,6 +104,8 @@ export class ModalComponent extends CKComponent{
     }
 
     private setTodo() {
+        // the todo needs to be created here
+        this.todo.createdAt = new Date();
         TodoModalService.instance.setTodo(this.todo);
     }
 

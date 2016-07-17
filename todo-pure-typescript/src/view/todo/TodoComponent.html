@@ -9,9 +9,18 @@
         </div>
         <div class="ui extra" {{finished}}>
             <div class="ui left floated">
-                <div> <i class="green database icon"></i> Created in {{todo.creationPrettyDate}} </div>
-                <div> <i class="checkmark icon"></i> Finished in {{todo.donePrettyDate}} </div>
-                <div> <i class="clock icon"></i> Due date in {{todo.duePrettyDate}} </div>
+                <div>
+                    <i class="green database icon"></i> Created in {{todo.creationPrettyDate}}
+                    <span class="ui tiny label">{{todo.creationInsightedDate}}</span>
+                </div>
+                <div>
+                    <i class="checkmark icon"></i> Finished in {{todo.donePrettyDate}}
+                    <span class="ui tiny label">{{todo.doneInsightedDate}}</span>
+                </div>
+                <div {{theresDueDate}}>
+                    <i class="clock icon"></i> Due date in {{todo.duePrettyDate}}
+                    <span class="ui tiny label">{{todo.dueInsightedDate}}</span>
+                </div>
                 <div class="description">
                     <p>
                         {{todo.description}}
@@ -29,9 +38,18 @@
         </div>
         <div class="ui meta" {{open}}>
             <div class="ui left floated">
-                <div> <i class="green database icon"></i> Created in {{todo.creationPrettyDate}} </div>
-                <div {{edited}}> <i class="blue info icon"></i> Edited in {{todo.updatePrettyDate}} </div>
-                <div {{theresDueDate}}> <i class="clock icon"></i> Due date in {{todo.duePrettyDate}} </div>
+                <div>
+                    <i class="green database icon"></i> Created in {{todo.creationPrettyDate}}
+                    <span class="ui tiny label">{{todo.creationInsightedDate}}</span>
+                </div>
+                <div {{edited}}>
+                    <i class="blue info icon"></i> Edited in {{todo.updatePrettyDate}}
+                    <span class="ui tiny label">{{todo.updateInsightedDate}}</span>
+                </div>
+                <div {{theresDueDate}}>
+                    <i class="clock icon"></i> Due date in {{todo.duePrettyDate}}
+                    <span class="ui tiny label">{{todo.dueInsightedDate}}</span>
+                </div>
                 <div class="description">
                     <p>
                         {{todo.description}}

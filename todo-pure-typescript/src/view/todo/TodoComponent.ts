@@ -22,27 +22,30 @@ export class TodoComponent extends CKComponent{
     }
     
     private toggleState(): void {
-        this.todo.done = !this.todo.done;
-        this.setDoneDate();
+        let instance : TodoComponent = this;
+        this.toggleDoneDate();
         console.log(this.todo.done ? "checked" : "unchecked");
-        this.applyScopeChange();
-        LocalStorageCrud.instance.save(this.todo);
+        LocalStorageCrud.instance.save(this.todo).then(() => {            
+            instance.applyScopeChange();
+        });
     }
 
-    private setDoneDate(): void {
-        if (this.todo.done) {
+    private toggleDoneDate(): void {        
+        if (this.todo.done)
+            this.todo.doneDate = null;
+        else
             this.todo.doneDate = new Date();
-        } else {
-            this.todo.doneDate = undefined;
-        }
+
+        this.todo.done = !this.todo.done;
     }
 
     private edit() : void {
         let instance : TodoComponent = this;
         TodoModalService.instance.openModal((todo : Todo) => {
             instance.todo = todo;
-            instance.applyScopeChange();
-            LocalStorageCrud.instance.save(instance.todo);
+            LocalStorageCrud.instance.save(instance.todo).then(() => {                
+                instance.applyScopeChange();
+            });
         }, () => {
 
         }, this.todo, false);
@@ -55,8 +58,9 @@ export class TodoComponent extends CKComponent{
             clonedTodo.dueDate = new Date(clonedTodo.dueDate.toUTCString());
         
         TodoModalService.instance.openModal((todo : Todo) => {
-            LocalStorageCrud.instance.delete(instance.todo);
-            this.destroy();
+            LocalStorageCrud.instance.delete(instance.todo).then(() => {
+                instance.destroy();
+            });
         }, () => {
 
         }, clonedTodo, true);

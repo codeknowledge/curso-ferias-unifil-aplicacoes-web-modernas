@@ -11,11 +11,6 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    font-family: cursive !important;
-}
-
-input {
-    font-family: cursive !important;
 }
 
 main {
@@ -43,7 +38,6 @@ main {
     text-align: center;
     align-items: center;
     color: ghostwhite;
-    font-family: cursive !important;
 }
 
 .wide-background

@@ -10,6 +10,8 @@
     "gulp-real-favicon": "^0.2.1",
     "gulp-typescript": "^2.13.6",
     "jquery": "^3.0.0",
+    "materialize-css": "^0.97.6",
+    "moment": "^2.14.1",
     "require-dir": "^0.3.0",
     "semantic-ui": "^2.1.8",
     "systemjs": "^0.19.31",
